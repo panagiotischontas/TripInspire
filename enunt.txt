@@ -1,0 +1,9 @@
+﻿TripInspire 
+
+Să se creeze o aplicație Web care să ofere sugestii de călătorie pe baza unor constrângeri/preferințe, 
+de exemplu: “doresc o vacanță activă de 7-10 zile la o temperatură mai mare de 20°C la mare” sau “doresc 
+un city break în Europa care să coste mai puțin de 200 EUR de persoană”. Sistemul va gestiona diverse 
+criterii de selectare. Pe baza acestor criterii, se vor monitoriza prețurile biletelor de avion pentru 
+destinațiile ce se potrivesc, alertandu-se (via browser notifications) utilizatorii când criteriile 
+sunt îndeplinite. Un utilizator poate avea una sau mai multe căutări de vacanțe active. Pentru 
+implementare se poate folosi API-ul: https://docs.kiwi.com/
