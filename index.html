@@ -5,59 +5,74 @@
     <title>Trip Inspire</title>
     <link href="reset.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
-
   </head>
 
   <body>
-
-
     <div id="bkg_image">
       <ul id="logo">
         <li>
-          <a class="active" href="#home">Trip Inspire</a>
+          <a class="active" href="index.html">Trip Inspire</a>
         </li>
       </ul>
       <ul>
         <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="#news">Team</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="About_us.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about_us.html">About us</a></li>
+        <li><a href="logged.html">Login/Register</a></li>
       </ul>
-      <div class="container grid-container">
-        <form action="#">
-
-          <div>
-            <input class="grid-item" type="text" id="hcity" name="yourcity" placeholder="Departure City">
-          </div>
-
-          <div>
-            <input type="text" id="lname" name="lastname" placeholder="Destination City">
-          </div>
-
-          <div class="col-75">
-            <input list="browsers" name="browser" placeholder="Destination Continent" />
-              <datalist id="browsers">
-                <option>Australia</option>
-                <option>Asia</option>
-                <option>Africa</option>
-                <option>Europa</option>
-                <option>America</option>
-              </datalist>
-           </div>
-
-          <div class="row">
-            <input type="submit" value="Search">
-          </div>
-        </form>
+      <div class="container">
+         <form action="#">
+           <input type="text" placeholder="Departure city">
+           <input type="text" placeholder="Traveled city">
+           <input list="continents" placeholder="Destination continent" />
+           <datalist id="continents">
+              <option value="Asia">Asia
+              <option value="Africa">Africa
+              <option value="North America">America de Nord
+              <option value="South America">America de Sud
+              <option value="Europe">Europa
+           </datalist>
+           <input type="submit">
+         </form>
       </div>
     </div>
+    <div id="suggestions">
+      <p  class="title">Our Suggestions</p>
+      <div  class="cardFather">
+        <div class="card">
+          <img src="../images/destination-1.jpg" alt="dest">
+          <div class="card_container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+          </div>
+        </div>
 
-    <div>
-      <p>
-        Suggestions
-      </p>
-    </div>
-    <div>
+        <div class="card">
+          <img src="../images/destination-1.jpg" alt="dest">
+          <div class="card_container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/destination-1.jpg" alt="dest">
+          <div class="card_container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+          </div>
+        </div>
+
+        <!-- <div class="card">
+          <img src="../images/destination-1.jpg" alt="dest">
+          <div class="card_container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+          </div>
+        </div> -->
+      </div>
+
 
     </div>
   </body>
