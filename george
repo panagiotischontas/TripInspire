@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+     body {
+       margin: 0;
+       padding: 0;
+       display: flex;
+       justify-content: center;
+     }
+
+     .form {
+       height: 700px;
+       width: 500px;
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       border: 1px solid #333;
+     }
+
+     .form input {
+       height: 20px;
+       min-width: 20%;
+       max-width: 30%;
+     }
+  </style>
+</head>
+<body>
+  <div class="form">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+  </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+.navbar{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #282828;
+  top: 0;
+  position:sticky;
+  z-index:1;
+}
+
+#logo{
+    float:left;
+    font-size:16px;
+}
+.navbar ul {
+  /* list-style-type: none; */
+  float:right;
+  font-size:16px;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 20px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: red;
+}
+
+.newsletter{
+  bottom:0;
+  position: fixed;
+  width: 100%;
+  margin: 0;
+  height: 40%;
+  background-image: url("images/newsletter.png");
+}
+
+.titleText{
+  padding-top: 80px;
+  padding-bottom: 35px;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 40px;
+  color:white;
+}
+
+.newsText{
+  padding-bottom: 30px;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 15px;
+  color:white;
+}
+
+.newsForm{
+  margin: 0;
+  margin-left: 40%;
+}
+
+#mailbox{
+  padding: 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+#mailbox::placeholder{
+  color:white;
+}
+
+#newsSubmit{
+    padding: 12px 20px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+
+#newsSubmit:hover{
+  opacity:0.5;
+}

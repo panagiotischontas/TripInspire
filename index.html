@@ -5,6 +5,8 @@
     <title>Trip Inspire</title>
     <link href="reset.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="cssIMP.css" rel="stylesheet" type="text/css">
+    <link href="navbar_newsletter.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
@@ -25,21 +27,55 @@
       </ul>
 
       <div class="container">
-         <form action="#">
+         <form action="team.html">
            <input type="text" placeholder="Departure city">
            <input type="text" placeholder="Traveled city">
-           <select name="continents">
-              <option value="Asia">Asia</option>
-              <option value="Africa">Africa</option>
-              <option value="North America">North America</option>
-              <option value="South America">South America</option>
-              <option value="Europe">Europe</option>
-           </select>
+           <input type="text" placeholder="Continent">
            <input type="submit">
          </form>
+    </div>
+</div>
 
+    <div id="suggestions">
+      <p  class="title">Our Suggestions</p>
+      <div  class="cardFather">
+        <div class="card">
+          <img src="../images/destination-1.jpg" alt="dest">
+          <div class="card_container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/destination-1.jpg" alt="dest">
+          <div class="card_container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/destination-1.jpg" alt="dest">
+          <div class="card_container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+          </div>
+        </div>
     </div>
   </div>
+
+  <div class="newsletter">
+      <p class="titleText">Subscribe to our newsletter</p>
+      <p class="newsText">Subscribe to our newsletter to
+      give you awesome ideas about places to visit</p>
+      <form action="#" class="newsForm">
+        <input type="mail" id="mailbox" placeholder="Enter email">
+        <input type="submit" value="Subscribe" id="newsSubmit">
+      </form>
+  </div>
+
+
   </body>
 
 </html>

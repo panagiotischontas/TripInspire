@@ -61,7 +61,7 @@ li a.active {
 }
 
 
-input{
+.container input{
   width: 25%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -70,7 +70,7 @@ input{
 }
 
 
-form{
+.container form{
   display: flex;
   justify-content: space-around;
   margin:auto;
@@ -81,7 +81,6 @@ form{
   display: grid;
 
   /* padding: 10px; */
-}
 
 
 /* .grid-item{
