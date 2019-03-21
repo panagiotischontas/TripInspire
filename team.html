@@ -5,22 +5,22 @@
     <title>Trip Inspire</title>
     <link href="reset.css" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
-    <div>
-      <ul class="logo">
-        <li>
-          <a href="index.html">Trip Inspire</a>
-        </li>
-      </ul>
-      <ul  class="nav_barTransparent">
-        <li><a  href="index.html">Home</a></li>
-        <li><a class="active" href="team.html">Team</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="about_us.html">About us</a></li>
-        <li><a href="logged.html">Login/Register</a></li>
-      </ul>
+    <div class="navbar">
+        <ul class="logo">
+          <li>
+            <a href="index.html">Trip Inspire</a>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="activeForNav2" href="team.html">Team</a></li>
+          <li><a class="active" href="contact.html">Contact</a></li>
+          <li><a href="about_us.html">About</a></li>
+        </ul>
     </div>
 
 
@@ -32,10 +32,10 @@
             <img src="images/burdu.jpg" alt="dest">
             <div class="card_container">
               <p  class="cardLocation">Burduhosu Mihai</p>
-              <p  class="cardPrice">From:  200 Lei</p>
+              <p  class="cardPrice">Student</p>
             </div>
-            <div class="card_btn">
-              <button>More</button>
+            <div>
+              <a href="https://www.facebook.com/mihaiburdu" class="fa fa-facebook"></a>
             </div>
           </div>
       </div>
@@ -45,10 +45,10 @@
             <img src="images/diana.jpg" alt="dest">
             <div class="card_container">
               <p  class="cardLocation">Orasanu Diana</p>
-              <p  class="cardPrice">From:  200 Lei</p>
+              <p  class="cardPrice">Student</p>
             </div>
-            <div class="card_btn">
-              <button>More</button>
+            <div>
+              <a href="https://www.facebook.com/diana.orasanu24" class="fa fa-facebook"></a>
             </div>
           </div>
       </div>
@@ -59,16 +59,30 @@
             <img src="images/pana.jpg" alt="dest">
             <div class="card_container">
               <p  class="cardLocation">Panagiotis Chontas</p>
-              <p  class="cardPrice">From:  200 Lei</p>
+              <p  class="cardPrice">Student</p>
             </div>
-            <div class="card_btn">
-              <button>More</button>
+            <div>
+              <a href="https://www.facebook.com/panagiotis.chontas" class="fa fa-facebook"></a>
             </div>
           </div>
       </div>
 
     </div>
   </div>
+
+  <footer class="newsletter">
+    <div>
+      <p class="titleText">Subscribe to our newsletter</p>
+      <p class="newsText">Subscribe to our newsletter to
+      give you awesome ideas about places to visit</p>
+      <div class="newslBtns">
+        <form action="#" class="newsForm">
+          <input type="mail" class="mailbox" placeholder="Enter email">
+          <input type="submit" value="Subscribe" class="newsSubmit">
+        </form>
+      </div>
+    </div>
+  </footer>
 
 
   </body>
