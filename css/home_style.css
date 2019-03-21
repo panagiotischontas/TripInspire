@@ -1,0 +1,93 @@
+
+                      /* DIV 1 - BACKGROUND IAGE + NAV BAR + FORM*/
+#bkg_image{
+
+  /* Full height */
+  background-image: url("../images/beach.jpg");
+  height: 94.5%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  padding-right: 150px;
+  padding-left: 150px;
+  padding-top: 40px;
+}
+
+#logo{
+  float:left;
+  font-size:25px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  /* list-style-type: none; */
+  padding: 0;
+  overflow: hidden;
+  background:transparent;
+  float:right;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 0px 15px 0px 15px;
+  text-decoration: none;
+}
+
+li a:hover{
+  background-color:transparent;
+  color: white;
+}
+
+li a.active {
+    color: white;
+    background-color:transparent;
+}
+
+
+
+.container{
+  padding-top:300px;
+}
+
+
+.container input{
+  width: 25%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+
+.container form{
+  display: flex;
+  justify-content: space-around;
+  margin:auto;
+  /* margin-top:0; */
+}
+/*
+.grid-container {
+  display: grid;
+
+  /* padding: 10px; */
+
+
+/* .grid-item{
+  background-col  or: rgba(255, 255, 255, 0.8);
+border: 1px solid rgba(0, 0, 0, 0.8);
+padding: 20px;
+font-size: 30px;
+text-align: center;
+}
+                                  /* DIV 2 - SUGGESTIONS */ */
