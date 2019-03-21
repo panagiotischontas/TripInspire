@@ -3,7 +3,7 @@
 #bkg_image{
 
   /* Full height */
-  background-image: url("images/hotel-2.jpg");
+  background-image: url("images/beach.jpg");
   height: 94.5%;
   /* Center and scale the image nicely */
   background-position: center;
@@ -24,7 +24,8 @@ ul.logo li{
 
 
 .nav_barTransparent {
-  /* list-style-type: none; */
+  list-style-type: none;
+  /* display:none; */
   padding: 0;
   overflow: hidden;
   background:transparent;
@@ -53,38 +54,68 @@ li a.active {
     background-color:transparent;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdown-content {
+  display: none;
+  position:absolute;
+  /* min-width: 160px; */
+  z-index: 10;
+}
+
+.dropdown:hover + .dropdown-content {
+  display: block;
+  background-color:none;
+  color:grey;
+  cursor: pointer;
+}
+.dropdown-content a{
+text-decoration:none;
+color:grey;
+}
+
+.dropdown-content:hover {
+  display: block;
+  background-color:none;
+  color:white;
+  cursor: pointer;
+}
 
 
 .container{
   align-items: center;
   padding-top:30px;
+    /* float:left; */
 }
 
 
-input{
-  width: 22%;
+.diana_form1, .diana_form2{
+  display:flex;
+  column-gap: 25px;
+
+}
+
+.searchForm{
+  padding-top:20%;
+  padding-left:15%;
+  /* padding-right:5%; */
+  width:100%;
+  /* float:right; */
+  justify-content: center;
+  align-items: center;
+}
+
+.formSearch{
+  width: 20%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
 }
-
-
-form{
-  margin: auto;
-  /* margin-top:0; */
-
-}
-
-datalist{
-  width: 22%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-
 
 /*
 .grid-container {
@@ -212,6 +243,7 @@ background-color:#f2f2f2;
   border: 6px solid #e6e6e6;
   cursor:pointer;
 }
+
 
 
 .card_btn button:hover{
