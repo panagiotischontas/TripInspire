@@ -1,2 +1,0 @@
-# TripInspire
-proiect la TW

@@ -38,7 +38,7 @@ ul.logo li{
 
 li a {
   display: block;
-  color: #666;
+  color:#e6e6e6;
   text-align: center;
   padding: 0px 15px 0px 15px;
   text-decoration: none;
@@ -70,12 +70,12 @@ li a.active {
 .dropdown:hover + .dropdown-content {
   display: block;
   background-color:none;
-  color:grey;
+  color:#e6e6e6;
   cursor: pointer;
 }
 .dropdown-content a{
 text-decoration:none;
-color:grey;
+color:#e6e6e6;
 }
 
 .dropdown-content:hover {
