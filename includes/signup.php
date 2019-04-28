@@ -9,7 +9,7 @@ if(isset($_POST['submit'])){
   $email = htmlspecialchars($_POST['Email']);
   $pwd = htmlspecialchars($_POST['Password']);
   $repeatpwd= htmlspecialchars($_POST['RepeatPassword']);
-  // $checkPassMatch = password_verify($pwd, $hash);
+  // $checkPassMatch = password_verify($pwd, $hash); //pt login
 
 
   if (empty($first) || empty($last) || empty($email) || empty($pwd) || empty($repeatpwd)){
@@ -22,7 +22,13 @@ if(isset($_POST['submit'])){
     } else {
       if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
         header("Location: ../register.php?signup=invalidemail&first=$first&last=$last");
+        exit();
       } else {
+
+        if($pwd != $repeatpwd){
+          header("Location: ../register.php?signup=pwdnotmatch&first=$first&last=$last&email=$email");
+          exit();
+        }
 
         $sql = "SELECT * FROM users WHERE user_email = '$email'";
         $result = mysqli_query($conn, $sql);
@@ -36,8 +42,8 @@ if(isset($_POST['submit'])){
           //insert the user into the db
           $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd) VALUES ('$first', '$last', '$email', '$hashedPwd');";
           mysqli_query($conn, $sql);
+          //trimite mail de bunvenit userului
           header("Location: ../register.php?signup=succes");
-          echo "AM REUSIT";
           exit();
         }
       }

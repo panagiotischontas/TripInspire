@@ -11,14 +11,13 @@
 </head>
 
 <body>
-   <?php
+<?php
     session_start();
-
 ?>
   <div class="form" >
 		  <ul  class="tab-group">
 			<li class="tab active"><a href="register.php">Register</a></li>
-			<li class="tab"><a href="login.html">Login</a></li>
+			<li class="tab"><a href="login.php">Login</a></li>
 		  </ul>
 
 		  <div class="tab-content">
@@ -111,10 +110,19 @@
                echo "<p class=\"error\"> You used an invalid e-mail address! </p>";
                exit();
              }
+             elseif($signupCheck == "alreadyexistsemail"){
+               echo "<p class=\"error\"> The e-mail address is already used! </p>";
+               exit();
+             }
+             elseif($signupCheck == "pwdnotmatch"){
+               echo "<p class=\"error\"> Passwords don't match! </p>";
+               exit();
+             }
              elseif($signupCheck == "succes"){
                echo "<p class=\"succes\"> You have been signed up! </p>";
                exit();
              }
+
            }
 
             ?>
