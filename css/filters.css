@@ -1,0 +1,23 @@
+.filterContent{
+    display: grid;
+    /* margin-left: 10%; */
+    grid-template-columns: 30% 60%;
+    grid-gap: 0px;
+  
+}
+.filtersLeft{
+    grid-column: 1;
+    /* width: 25%; */
+    margin-left: 10%;
+    /* grid-gap: 0px; */
+
+}
+.filtersRight{
+    grid-column: 2;
+    /* width: 75%; */
+    /* align-content: center; */
+    /* grid-area: main; */
+    margin-left: -5%;
+    margin-top: -1.5%;
+
+}
