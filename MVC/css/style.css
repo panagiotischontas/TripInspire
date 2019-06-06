@@ -3,7 +3,7 @@
 #bkg_image{
 
   /* Full height */
-  background-image: url("images/beach.jpg");
+  background-image: url("../images/beach.jpg");
   height: 94.5%;
   /* Center and scale the image nicely */
   background-position: center;

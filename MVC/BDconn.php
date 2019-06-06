@@ -7,7 +7,7 @@ $dbName = "tw";
 
 $conn = mysqli_connect($dbServerName, $dbUsername, $dbPass, $dbName);
 
-echo "succees";
+// echo "succees";
 
 
  ?>

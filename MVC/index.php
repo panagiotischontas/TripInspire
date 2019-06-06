@@ -1,10 +1,13 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Trip Inspire</title>
-    <link href="reset.css" rel="stylesheet" type="text/css">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
@@ -16,20 +19,24 @@
       </ul>
       <ul  class="nav_barTransparent">
         <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="team.html">Team</a></li>
+        <li><a href="static_pages/team.html">Team</a></li>
         <li><a href="produs.html">Contact</a></li>
-        <li><a href="about_us.html">About</a></li>
-        <li><div class="dropdown">
-          <a href="index.html">
-               Nume Utilizator
-            </a>
-            </div>
-            <div class="dropdown-content">
-              <a href="#">Profil</a>
-              <a href="#">Setari</a>
-              <a href="index.html">Log out</a>
-            </div>
-        </li>
+        <li><a href="static_pages/about_us.html">About</a></li>
+
+<?php
+if(isset($_SESSION['u_id'])){
+  $first = $_SESSION['u_first'];
+  $last = $_SESSION['u_last'];
+  echo "<li><a href=\"about_us.html\">$first $last</a></li>";
+
+}
+else {
+  echo "  <li><a href=\"view/login.php\">Login</a></li>";
+  echo "  <li><a href=\"view/register.php\">Register</a></li>";
+}
+ ?>
+
+
       </ul>
 
 
