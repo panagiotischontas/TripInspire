@@ -25,7 +25,9 @@
   if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
   
   var displayElement = parent.getElementsByClassName("rangeValues")[0];
-      displayElement.innerHTML = slide1 + "°C - " + slide2 + "°C";
+      displayElement.innerHTML = slide1 + "$ - " + slide2 + "$";
+
+  
 }
 
 window.onload = function(){
@@ -47,20 +49,25 @@ window.onload = function(){
 
 
 
+
+
+
+
+
 </head>
 
 <body>
 <div class="navbar">
     <div class="logo">
-    <a href="index.html">Trip Inspire</a>
+    <a href="index.php">Trip Inspire</a>
     </div>
 
     <div class="pages">
-        <a href="index.html">Home</a>
-        <a href="team.html">Team</a>
-        <a class="active" href="contact.html">Contact</a>
-        <a class="activeForNav2" href="about_us.html">About</a>
-        <a href="login.html">Login</a>
+        <a href="index.php">Home</a>
+        <a href="team.php">Team</a>
+        <a class="active" href="contact.php">Contact</a>
+        <a href="about_us.php">About</a>
+        <a href="login.php">Login</a>
     </div>
 
 </div>
@@ -245,7 +252,7 @@ window.onload = function(){
                     </div>
                     <div class="search-bar-boxRightButtons">
                         <button type="submit" class="cardsButton"><a href="#">View</a></button>
-                        <button type="submit" class="cardsButton"><a href="#">Add</a></button>
+                        <button type="submit" class="cardsButton"><a href="profile.php">Add</a></button>
                         <button type="submit" class="cardsButton"><a href="#">Buy</a></button>
                     </div>
 
@@ -365,7 +372,7 @@ window.onload = function(){
                     </div>
                     <div class="search-bar-boxRightButtons">
                         <button type="submit" class="cardsButton"><a href="#">View</a></button>
-                        <button type="submit" class="cardsButton"><a href="#">Add</a></button>
+                        <button type="submit" class="cardsButton"><a href="profile.php">Add</a></button>
                         <button type="submit" class="cardsButton"><a href="#">Buy</a></button>
                     </div>
                 </div>

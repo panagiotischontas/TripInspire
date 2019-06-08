@@ -21,8 +21,8 @@
 	<div class="form">
 
 		<ul class="tab-group">
-			<li class="tab "><a href="register.html">Register</a></li>
-			<li class="tab active"><a href="login.html">Login</a></li>
+			<li class="tab "><a href="register.php">Register</a></li>
+			<li class="tab active"><a href="login.php">Login</a></li>
 		</ul>
 
 

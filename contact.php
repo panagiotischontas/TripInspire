@@ -20,15 +20,15 @@
 
   <div class="navbar">
     <div class="logo">
-      <a href="index.html">TripInspire</a>
+      <a href="index.php">TripInspire</a>
     </div>
 
     <div class="pages">
-      <a href="index.html">Home</a>
-      <a href="team.html">Team</a>
-      <a class="activeForNav2" href="contact.html">Contact</a>
-      <a href="about_us.html">About</a>
-      <a href="login.html">Login</a>
+      <a href="index.php">Home</a>
+      <a href="team.php">Team</a>
+      <a class="activeForNav2" href="contact.php">Contact</a>
+      <a href="about_us.php">About</a>
+      <a href="login.php">Login</a>
     </div>
 
   </div>
@@ -36,7 +36,7 @@
 
 
   <div class="contact">
-    <form action="contact.html">
+    <form action="contact.php">
       <label for="fname">First Name</label>
       <input type="text" placeholder="Your name..">
 

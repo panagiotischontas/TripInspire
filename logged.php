@@ -14,13 +14,13 @@
   <div id="bkg_image">
     <div class="indexFooter">
       <div class="logo">
-        <a href="index.html">TripInspire</a>
+        <a href="index.php">TripInspire</a>
       </div>
       <ul class="nav_barTransparent">
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="produs.html">Contact</a></li>
-        <li><a href="about_us.html">About</a></li>
+        <li><a class="active" href="index.php">Home</a></li>
+        <li><a href="team.php">Team</a></li>
+        <li><a href="produs.php">Contact</a></li>
+        <li><a href="about_us.php">About</a></li>
         <li>
           <div class="dropdown">
             <a href="index.html">
@@ -28,8 +28,8 @@
             </a>
           </div>
           <div class="dropdown-content">
-            <a href="Cart.html">Profile</a>
-            <a href="index.html">Log out</a>
+            <a href="Cart.php">Profile</a>
+            <a href="index.php">Log out</a>
           </div>
         </li>
       </ul>

@@ -29,19 +29,19 @@
 <body style="background-color:#f2f2f2;">
   <div class="navbar">
     <div class="logo">
-      <a href="index.html">Trip Inspire</a>
+      <a href="index.php">Trip Inspire</a>
     </div>
 
     <div class="pages">
-      <a href="index.html">Home</a>
-      <a href="team.html">Team</a>
-      <a class="active" href="contact.html">Contact</a>
-      <a class="activeForNav2" href="about_us.html">About</a>
-      <a href="login.html">Login</a>
+      <a href="index.php">Home</a>
+      <a href="team.php">Team</a>
+      <a class="active" href="contact.php">Contact</a>
+      <a class="activeForNav2" href="about_us.php">About</a>
+      <a href="login.php">Login</a>
     </div>
 
   </div>
-  
+
   <div class="produsContent">
     <p class="produstitlu">Why us?</p>
     <div class="produsDescriere">
