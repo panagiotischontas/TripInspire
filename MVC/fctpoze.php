@@ -9,7 +9,7 @@ function getPicture($city){
   curl_setopt ($c, CURLOPT_SSL_VERIFYPEER, false);
   $res = curl_exec ($c);
   curl_close ($c);
-  // echo htmlentities ($res);
+  echo htmlentities ($res);
   $res =  json_decode($res, true);
   if(isset($res['results'])){
   $results = $res['results'];
@@ -41,15 +41,14 @@ function getPicture($city){
           echo "nu are result";
         }
 
-if(isset($arr)){
-  echo "<img src=\"" . $arr . "\">";
+  if(isset($arr)){
+    echo "<img src=\"" . $arr . "\">";
+  }
+
 }
 
 
-}
-
-
-$json = getPicture("Barcelona");
+$json = getPicture("Palma,Majorca");
 // echo json_encode($json);
 //
 
