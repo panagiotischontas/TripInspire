@@ -4,6 +4,7 @@
 
 <?php
 
+header("Content-Type: text/html; charset=ISO-8859-1");
 
 require_once '../controller/FiltersController.php';
 require_once '../model/FiltersModel.php';
@@ -14,7 +15,9 @@ session_start();
 $controller = new FiltersController();
 // echo $conn;
 $model = new FiltersModel($controller, $conn);
-
+for ($i=0; $i < count($model->AllCities); $i++) {
+  echo $model->AllCities[$i] . " " ;
+}
 $controller->setModel($model);
 
  ?>
@@ -165,7 +168,7 @@ $controller->setModel($model);
 
           //apelam kiwiApi cu parametrii:   $filterDepartureCity;  $filterCities;  $filterDate;  $filterPrice;  $filterWeather;
           $model->filterDate = "20/06/2019";
-          $json = $model->getFlight($model->filterDepartureCity, $model->filterCities, $model->filterDate, $model->filterPrice); // cu parametru vect Filters
+          $json = $model->getFlight($model->filterDepartureCity, $model->$finalFilterCities, $model->filterDate, $model->filterPrice); // cu parametru vect Filters
           //$json = getFlight($flyFrom, $countryCode,$date_from);
           // $json = $model->getFlight("BUH", ["IT"], $dateFlight,$dateFlight,1,1000);
           if($json != 0){

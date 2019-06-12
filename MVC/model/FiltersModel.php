@@ -19,6 +19,7 @@ class FiltersModel{
   public $OnAir;
   public $filterDepartureCity;
   public $filterCities;
+  public $finalFilterCities;
   public $filterDate;
   public $filterPass;
   public $filterPrice;
@@ -30,11 +31,11 @@ class FiltersModel{
   public function __construct($c, $conn){
     $this->controller = $c;
          $this->conn = $conn;
-    $this->filters = array( "Continente" => array("Asia", "America de Sud", "America de nord", "Africa", "Europa", "Australia"),
-    "tara" => array("Romania", "Italia", "Spania", "Franta"),
-     "orase" => array("iasi", "bucuresti", "timisoara"),
-     "clasa" => array("Business", "Eco"),
-     "escala" => array("Zbor direct", "Maxim 1 escala", "Maxim 2 escale"));
+    // $this->filters = array( "Continente" => array("Asia", "America de Sud", "America de nord", "Africa", "Europa", "Australia"),
+    // "tara" => array("Romania", "Italia", "Spania", "Franta"),
+    //  "orase" => array("iasi", "bucuresti", "timisoara"),
+    //  "clasa" => array("Business", "Eco"),
+    //  "escala" => array("Zbor direct", "Maxim 1 escala", "Maxim 2 escale"));
      $this->getTari();
      $this->getAir();
 
@@ -76,7 +77,7 @@ class FiltersModel{
       $myUrl = $myUrl . ',' . $filterCities[$i];
     $myUrl = $myUrl . "&date_from=" .$filterDate;
     $myUrl = $myUrl . "&price_from=".  $filterPrice[0]   . "&price_to=" . $filterPrice[1];
-    // echo $myUrl;
+    echo $myUrl;
     // $URLL = "https://api.skypicker.com/flights?fly_to=IT,FR&date_from=08/08/2019&date_to=08/09/2019";
     // define('URL2', $URLL);
 // echo $myUrl;
@@ -298,7 +299,7 @@ function getTari(){
 }
 
 public function getAir(){
-
+$this->AllCities = array();
 
   foreach ($this->tari as $c => $t) {
     // echo $c .  ": ";
@@ -316,6 +317,7 @@ public function getAir(){
         $row = mysqli_fetch_assoc($result);
         $CurrOras = $row['oras'];
         $CurrAir = $row['aeroport'];
+        array_push($this->AllCities, $CurrOras);
         $newArray = array($CurrOras, $CurrAir);
         // echo "aici: " . $t[$i] . "--";
         array_push($this->OnAir[$t[$i]], $newArray);
