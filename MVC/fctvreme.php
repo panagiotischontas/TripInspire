@@ -1,6 +1,6 @@
 <?php
 
-function getWeather2($city, $country, $date){
+function getWeather2($city, $date){
 $myUrl = "https://api.weatherbit.io/v2.0/forecast/daily?city=" . $city . "&key=9ad9717f138149cbb2cae294afbfe2a1";
 define('URL2', $myUrl);
 
@@ -10,9 +10,14 @@ curl_setopt ($c, CURLOPT_RETURNTRANSFER, true);
 curl_setopt ($c, CURLOPT_SSL_VERIFYPEER, false);
 $res = curl_exec ($c);
 curl_close ($c);
-// echo htmlentities ($res);
+echo htmlentities ($res);
 $res =  json_decode($res, true);
-$array = $res['data'];
+if(isset($res['data'])){
+  $array = $res['data'];
+} else{
+  //nu avem data
+  return -1;
+}
 // echo json_encode($array);
 
 // echo count($array);
@@ -35,34 +40,36 @@ return $json;
 
 }
 
-$json = getWeather2("Iasi", "romania", "2019-06-13");
-echo json_encode($json);
-
-
-
-
-
-function getWeather($city, $country){
-$myUrl = "api.openweathermap.org/data/2.5/weather?q=" . $city . ",". $country . "&APPID=ff676835b9a09d7af3501e243eb47d2c";
-define('URL', $myUrl);
-
-$c = curl_init ();
-curl_setopt ($c, CURLOPT_URL, URL);
-curl_setopt ($c, CURLOPT_RETURNTRANSFER, true);
-curl_setopt ($c, CURLOPT_SSL_VERIFYPEER, false);
-$res = curl_exec ($c);
-curl_close ($c);
-// echo htmlentities ($res);
-$res =  json_decode($res, true);
-$array = $res['main'];
-$temp_min =  $array['temp_min'];
-$temp_max =  $array['temp_max'];
-
-$temp_array = [$temp_min, $temp_max];
-$json = array('temp-min' => $temp_array[0], 'temp-max' => $temp_array[1]);
-return $json;
-
+$json = getWeather2("TMR", "2019-08-20");
+if($json != -1){
+  echo json_encode($json);
 }
+
+
+
+
+//
+// function getWeather($city, $country){
+// $myUrl = "api.openweathermap.org/data/2.5/weather?q=" . $city . ",". $country . "&APPID=ff676835b9a09d7af3501e243eb47d2c";
+// define('URL', $myUrl);
+//
+// $c = curl_init ();
+// curl_setopt ($c, CURLOPT_URL, URL);
+// curl_setopt ($c, CURLOPT_RETURNTRANSFER, true);
+// curl_setopt ($c, CURLOPT_SSL_VERIFYPEER, false);
+// $res = curl_exec ($c);
+// curl_close ($c);
+// // echo htmlentities ($res);
+// $res =  json_decode($res, true);
+// $array = $res['main'];
+// $temp_min =  $array['temp_min'];
+// $temp_max =  $array['temp_max'];
+//
+// $temp_array = [$temp_min, $temp_max];
+// $json = array('temp-min' => $temp_array[0], 'temp-max' => $temp_array[1]);
+// return $json;
+//
+// }
 
 // $json = getWeather("Iasi", "ro");
 // echo json_encode($json);

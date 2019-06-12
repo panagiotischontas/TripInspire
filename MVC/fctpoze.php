@@ -48,7 +48,8 @@ function getPicture($city){
 }
 
 
-$json = getPicture("Palma,Majorca");
+$json = getPicture("IAS");
+// echo strlen("https://images.unsplash.com/photo-1533627634236-4d7ae55ec7b2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjc1MzkwfQ");
 // echo json_encode($json);
 //
 

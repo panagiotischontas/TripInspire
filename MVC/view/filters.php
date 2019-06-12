@@ -8,6 +8,7 @@
 require_once '../controller/FiltersController.php';
 require_once '../model/FiltersModel.php';
 require_once '../BDconn.php';
+require_once '../fctDate.php';
 
 session_start();
 $controller = new FiltersController();
@@ -57,9 +58,7 @@ $controller->setModel($model);
         <div class="filtersLeft">
           <form mathod="GET" action="#">
                 <?php
-
                 $idForm = "Continente";
-
                 $i = 0;
                 foreach ($model->tari as $key => $value) {
                   $idInput[$i] = $key;
@@ -90,11 +89,11 @@ $controller->setModel($model);
                 }
                 $model->generateFilterFormWithScroll($idForm, $idInput, $valueInput,"Everywhere in..");
 
-
-                $idForm = "Clasa";
-                $idInput = ["Business", "Eco"];
-                $valueInput = ["Business", "Eco"];
-                $model->generateFilterForm($idForm, $idInput, $valueInput, "Class");
+                //
+                // $idForm = "Clasa";
+                // $idInput = ["Business", "Eco"];
+                // $valueInput = ["Business", "Eco"];
+                // $model->generateFilterForm($idForm, $idInput, $valueInput, "Class");
 
                 ?>
 
@@ -102,21 +101,44 @@ $controller->setModel($model);
                 <div class="form">
 
                   <?php
-                    $idInput = ["Zbor direct", "Maxim 1 escala", "Maxim 2 escale"];
-                    $valueInput = ["Zbor direct", "Maxim 1 escala", "Maxim 2 escale"];
+                    $idInput = ["Direct-Flight", "Layover"];
+                    $valueInput = ["Direct-Flight", "Layover"];
                     $model->generateFilterCrit($idInput, $valueInput);
                   ?>
                     <!--<h1>Custom Checkboxes</h1>-->
 
                     <section class="range-slider">
                         <span class="rangeValues"></span>
-                        <input value="0" min="0" max="38000" step="50" type="range" name="minPrice">
-                        <input value="38000" min="0" max="38000" step="50" type="range" name="maxPrice">
+                        <?php if(isset($_GET['minPrice'])){
+                          echo "<input value=\"".$_GET['minPrice']."\" min=\"0\" max=\"38000\" step=\"50\" type=\"range\" name=\"minPrice\">";
+                        }else{
+                      echo"<input value=\"0\" min=\"0\" max=\"38000\" step=\"50\" type=\"range\" name=\"minPrice\">";
+                      }
+                      if(isset($_GET['maxPrice'])){
+                        echo "<input value=\"".($_GET['maxPrice'])."\" min=\"0\" max=\"38000\" step=\"50\" type=\"range\" name=\"maxPrice\">";
+                        }else{
+                      echo "<input value=\"38000\" min=\"0\" max=\"38000\" step=\"50\" type=\"range\" name=\"maxPrice\">";
+                        }
+                        ?>
                     </section> <br>   <br><br>      <br>     <br>    <br>
                     <section class="range-slider">
                         <span class="rangeValues"></span>
-                        <input value="-50" min="-50" max="60" step="5" type="range">
-                        <input value="60" min="-50" max="60" step="5" type="range">
+
+<?php
+                        if(isset($_GET['minWeather'])){
+                          echo "<input value=\"".$_GET['minWeather']."\" min=\"-50\" max=\"60\" step=\"5\" type=\"range\" name=\"minWeather\">";
+                        }else{
+                        echo"<input value=\"-50\" min=\"-50\" max=\"60\" step=\"5\" type=\"range\" name=\"minWeather\">";
+                        }
+                        if(isset($_GET['maxWeather'])){
+                        echo "<input value=\"".$_GET['maxWeather']."\" min=\"-50\" max=\"60\" step=\"5\" type=\"range\"name=\"maxWeather\">";
+                        }else{
+                        echo "<input value=\"60\" min=\"-50\" max=\"60\" step=\"5\" type=\"range\"name=\"maxWeather\">";
+                      }?>
+
+
+
+
                     </section>
 
 
@@ -137,60 +159,89 @@ $controller->setModel($model);
 
           <?php
           //$model->getFilters(); ->in vect Filters sa zicem
-          $dateFlight = "20/08/2019";
-          $dateForFR = "2019-08-20";
-          $dateForAll = "190820";
+          $dateFlight = "20/06/2019";
+          $dateForFR = "2019-06-20";
+          $dateForAll = "190620";
 
-            //apelam kiwiApi cu parametrii:   $filterDepartureCity;  $filterCities;  $filterDate;  $filterPrice;  $filterWeather;
-
-            $json = $model->getFlight($model->filterDepartureCity, $model->filterCities, $model->filterDate, $model->filterPrice); // cu parametru vect Filters
-            //$json = getFlight($flyFrom, $countryCode,$date_from);
-            // $json = $model->getFlight("BUH", ["IT"], $dateFlight,$dateFlight,1,1000);
-            for($i=0; $i<5; $i=$i+1){ //$i<count($json)
-
-
-              echo "<div class=\"box clearfix\">
-                  <div class=\"box-left\"><img src=\"../sibiu.jpg\" alt=\"location\">";
+          //apelam kiwiApi cu parametrii:   $filterDepartureCity;  $filterCities;  $filterDate;  $filterPrice;  $filterWeather;
+          $model->filterDate = "20/06/2019";
+          $json = $model->getFlight($model->filterDepartureCity, $model->filterCities, $model->filterDate, $model->filterPrice); // cu parametru vect Filters
+          //$json = getFlight($flyFrom, $countryCode,$date_from);
+          // $json = $model->getFlight("BUH", ["IT"], $dateFlight,$dateFlight,1,1000);
+          if($json != 0){
+            $lg = count($json)/2+1;
+          for($i=0; $i<$lg; $i=$i+1){ //$i<count($json)
 
 
-               // $model->getPicture($json[$i]['cityTo']);
-                 // <img src=\"../sibiu.jpg\" alt=\"location\">
+          //verifica criteriul cu vremea
+          $earlier = new DateTime(date("Y-m-d", strtotime("now")));
+          $later = new DateTime(getDateFormat($model->filterDate,"wizz"));
+          $diff = $later->diff($earlier)->format("%a");
+          // echo $diff . " ";
+
+          $rezVreme = array(0,0);
 
 
-              echo "  </div>
-                <div class=\"box-right\">
-                    <div class=\"search-bar-boxRightText\">";
-                    echo "<p class=\"bold\">" . $json[$i]['cityTo'] .  "</p>";
+          if(!in_array($json[$i]['cityTo'], $model->OraseAfisate)){
+            array_push($model->OraseAfisate, $json[$i]['cityTo']);
+          }else{
+            continue;
+          }
+          if($diff < 16){
+            $rezVreme = $model->getWeather2($json[$i]['cityTo'], $model->filterDate);
+            if($rezVreme != -1){
+              if(isset($rezVreme[0]) && isset($rezVreme[0]))
+                if(!($rezVreme[0] == 0 && $rezVreme[1] == 0)){
+                  //verific
+                  echo $rezVreme[0], $model->filterWeather[0] , $rezVreme[1] , $model->filterWeather[1] . " ";
+                  if($rezVreme[0] < $model->filterWeather[0] || $rezVreme[1] > $model->filterWeather[1])
+                    continue;
+                }
+            }
+          }
 
-                    if (count($json[$i]['route']) == 1) {
-                      // code...
-                      $toEcho = " Zbor direct";
-                      $link="#";
-                          $link =  $model->getLink($json[$i]['airlines'][0], $json[$i]['routes'][0][0], $json[$i]['routes'][0][1], $dateForFR,$dateForAll);
-                          // echo $link;
-                    }else{
-                      $link= "https://www.skyscanner.ro/transport/flights/"  .$json[$i]['routes'][0][0]. "/".$json[$i]['routes'][0][1] ."/" . $dateForAll . "//?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false#results";
-                      $esc=count($json[$i]['route'])-1;
-                      $toEcho = " cu escala la: ";
-                      for($j=0;$j<$esc; $j=$j+1)
-                        $toEcho = $toEcho . $json[$i]['route'][$j]['cityTo'] . "  ";
-                    }
+          echo "<div class=\"box clearfix\">
+              <div class=\"box-left\"><img src=\"../sibiu.jpg\" alt=\"location\">";
+
+
+           // $model->getPicture($json[$i]['cityTo']);
+             // <img src=\"../sibiu.jpg\" alt=\"location\">
+
+
+          echo "  </div>
+            <div class=\"box-right\">
+                <div class=\"search-bar-boxRightText\">";
+                echo "<p class=\"bold\">" . $json[$i]['cityTo'] .  "</p>";
+
+                if (count($json[$i]['route']) == 1) {
+                  // code...
+                  $toEcho = " Zbor direct";
+                  $link="#";
+                      $link =  $model->getLink($json[$i]['airlines'][0], $json[$i]['routes'][0][0], $json[$i]['routes'][0][1], $dateForFR,$dateForAll);
+                      // echo $link;
+                }else{
+                  $link= "https://www.skyscanner.ro/transport/flights/"  .$json[$i]['routes'][0][0]. "/".$json[$i]['routes'][0][1] ."/" . $dateForAll . "//?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false#results";
+                  $esc=count($json[$i]['route'])-1;
+                  $toEcho = " cu escala la: ";
+                  for($j=0;$j<$esc; $j=$j+1)
+                    $toEcho = $toEcho . $json[$i]['route'][$j]['cityTo'] . "  ";
+                }
 
 
 
-                    echo"<p>". $json[$i]['routes'][0][1] ."</p>
-                    <p> <b>To:</b> 16/06/2018</p>";
-                    echo "<p> <b>Price:</b>". $json[$i]['price'] . " EUR" ."</p>";
-                    echo "</div>  <div class=\"search-bar-boxRightButtons\">
-                        <button type=\"submit\" class=\"cardsButton\"><a href=\"#\">View</a></button>
-                      <button type=\"submit\" class=\"cardsButton\"><a href=\"profile.php\">Add</a></button>
-                      <button type=\"submit\" class=\"cardsButton\"><a href='".$link."'>Buy</a></button>
-                    </div>";
-              ?>
+                echo"<p>".  $toEcho ."</p>
+                <p> ".$json[$i]['routes'][0][1]."</p>";
+                echo "<p> <b>Price:</b>". $json[$i]['price'] . " EUR" ."</p>";
+                echo "</div>  <div class=\"search-bar-boxRightButtons\">
+                    <button type=\"submit\" class=\"cardsButton\"><a href=\"#\">View</a></button>
+                  <button type=\"submit\" class=\"cardsButton\"><a href=\"profile.php\">Add</a></button>
+                  <button type=\"submit\" class=\"cardsButton\"><a href='".$link."'>Buy</a></button>
+                </div>";
+          ?>
     <!-- </div>  <div class="search-bar-boxRightButtons">
           <button type="submit" class="cardsButton"><a href="#">View</a></button>
         <button type="submit" class="cardsButton"><a href="profile.php">Add</a></button>
-        <button type="submit" class="cardsButton"><a href= "<?php echo $link; ?>" > Buy</a></button>
+        <button type="submit" class="cardsButton"><a href= "<?php //echo $link; ?>" > Buy</a></button>
       </div> -->
 
 
@@ -198,6 +249,7 @@ $controller->setModel($model);
 </div>
     <?php
           }
+        }
            ?>
         </div>
     </div>
@@ -205,8 +257,36 @@ $controller->setModel($model);
     <div class="main-content3">
         <div class="wrapper">
             <?php
-for ($i=10; $i < 20; $i++) {
+for ($i=$lg+1; $i < count($json); $i++) {
   // code...
+
+  $earlier = new DateTime(date("Y-m-d", strtotime("now")));
+  $later = new DateTime(getDateFormat($model->filterDate,"wizz"));
+  $diff = $later->diff($earlier)->format("%a");
+  // echo $diff . " ";
+
+  $rezVreme = array(0,0);
+  if(!in_array($json[$i]['cityTo'], $model->OraseAfisate)){
+    array_push($model->OraseAfisate, $json[$i]['cityTo']);
+  }else{
+    continue;
+  }
+
+  if($diff < 16){
+    $rezVreme = $model->getWeather2($json[$i]['cityTo'], $model->filterDate);
+    if($rezVreme != -1){
+      if(isset($rezVreme[0]) && isset($rezVreme[0]))
+        if(!($rezVreme[0] == 0 && $rezVreme[1] == 0)){
+          //verific
+          echo $rezVreme[0], $model->filterWeather[0] , $rezVreme[1] , $model->filterWeather[1] . " ";
+          if($rezVreme[0] < $model->filterWeather[0] || $rezVreme[1] > $model->filterWeather[1])
+            continue;
+        }
+    }
+  }
+
+
+
   echo "<div class=\"box clearfix\">
       <div class=\"box-left\">    <img src=\"../sibiu.jpg\" alt=\"location\">";
   // $model->getPicture($json[$i]['cityTo']);
@@ -228,10 +308,17 @@ for ($i=10; $i < 20; $i++) {
   </div>
   <?php
 } ?>
+
+<!-- <div>
+  <button>Salveaza filtrele!!</button>
+</div> -->
         </div>
     </div>
 
 </div>
+
+
+
 <!-- newsletter -->
 <script>
     function getVals(){

@@ -12,7 +12,7 @@ function getFlight($flyFrom, $flyToArray,$date_from, $date_to){
   if(!isset($flyFrom)){
     $flyFrom = "RO";
   }
-  $myUrl = "https://api.skypicker.com/flights?select_airlines=FR,W6&limit=5000&fly_from=" . $flyFrom . "&fly_to=";
+  $myUrl = "https://api.skypicker.com/flights?&limit=5000&fly_from=" . $flyFrom . "&fly_to=";
   $myUrl = $myUrl . $flyToArray[0];
   for($i=1; $i<count($flyToArray); $i=$i+1)
     $myUrl = $myUrl . ',' . $flyToArray[$i];
@@ -40,7 +40,7 @@ function getFlight($flyFrom, $flyToArray,$date_from, $date_to){
 
 
 $flyFrom="OTP";
-$flyToArray = ["ES"];
+$flyToArray = ["NY"];
 $date_from = "08/08/2019";
 $date_to="08/08/2019";
 $dateForFR = "2019-08-08";

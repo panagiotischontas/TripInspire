@@ -17,8 +17,10 @@ class FiltersController{
   public function getInput(){
     $this->model->filterDepartureCity="";
     $this->model->filterDate = "";
-    $this->model->filterPrice[0] = "";
-    $this->model->filterPrice[1] = "";
+    $this->model->filterPrice[0] = 0;
+    $this->model->filterPrice[1] = 38000;
+    $this->model->filterWeather[0] = -50;
+    $this->model->filterWeather[1] = 60;
     $this->model->filterCities = array();
     //GET THE DEPARTURE CITY
     $this->model->filterDepartureCity = "IAS"; //default
@@ -27,9 +29,19 @@ class FiltersController{
     //GET THE DEPARTURE DATE
     $this->model->filterDate = date("d/m/Y", strtotime("+1 day"));
 
-
+if(isset($_GET['minPrice'])){
     $this->model->filterPrice[0] = $_GET['minPrice'];
+  }
+  if(isset($_GET['maxPrice'])){
     $this->model->filterPrice[1] =  $_GET['maxPrice'];
+  }
+
+  if(isset($_GET['minWeather'])){
+      $this->model->filterWeather[0] = $_GET['minWeather'];
+    }
+    if(isset($_GET['maxWeather'])){
+      $this->model->filterWeather[1] =  $_GET['maxWeather'];
+    }
 
 
 
@@ -39,13 +51,13 @@ class FiltersController{
         //ia toate aeroporturile din continentul KEY
 
         //incepand cu tarile
-        echo "value: " . count($value);
+        // echo "value: " . count($value);
         for ($i=0; $i < count($value); $i++) {
           //acum luam fiecare aeroport
           // echo "onair: : " . count($this->model->OnAir[$value[$i]]);
-          echo $value[$i] . " ";
+          // echo $value[$i] . " ";
           for ($j=0; $j < count($this->model->OnAir[$value[$i]]); $j++) {
-            echo $this->model->OnAir[$value[$i]][$j][1] . " ";
+            // echo $this->model->OnAir[$value[$i]][$j][1] . " ";
             if(!in_array($this->model->OnAir[$value[$i]][$j][1],  $this->model->filterCities)){
                 array_push($this->model->filterCities, $this->model->OnAir[$value[$i]][$j][1]);
             }
@@ -86,10 +98,10 @@ class FiltersController{
 
     }
 
-echo  count($this->model->filterCities) . " ";
-for ($i=0; $i < count($this->model->filterCities); $i++) {
-  echo $this->model->filterCities[$i] . " ";
-}
+// echo  count($this->model->filterCities) . " ";
+// for ($i=0; $i < count($this->model->filterCities); $i++) {
+//    echo $this->model->filterCities[$i] . " ";
+// }
 
 
   }
