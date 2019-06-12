@@ -66,7 +66,7 @@ $controller->setModel($model);
                   $valueInput[$i] = $key;
                   $i=$i+1;
                 }
-                $model->generateFilterForm($idForm, $idInput, $valueInput);
+                $model->generateFilterForm($idForm, $idInput, $valueInput, "Everywhere in..");
 
                 $idForm = "tara";
                 $i = 0;
@@ -75,7 +75,7 @@ $controller->setModel($model);
                   $valueInput[$i] = $key;
                   $i=$i+1;
                 }
-                $model->generateFilterForm($idForm, $idInput, $valueInput);
+                $model->generateFilterFormWithScroll($idForm, $idInput, $valueInput, "Everywhere in..");
 
 
                 $idForm = "orase";
@@ -88,13 +88,13 @@ $controller->setModel($model);
                    }
 
                 }
-                $model->generateFilterForm($idForm, $idInput, $valueInput);
+                $model->generateFilterFormWithScroll($idForm, $idInput, $valueInput,"Everywhere in..");
 
 
                 $idForm = "Clasa";
                 $idInput = ["Business", "Eco"];
                 $valueInput = ["Business", "Eco"];
-                $model->generateFilterForm($idForm, $idInput, $valueInput);
+                $model->generateFilterForm($idForm, $idInput, $valueInput, "Class");
 
                 ?>
 
@@ -141,9 +141,9 @@ $controller->setModel($model);
           $dateForFR = "2019-08-20";
           $dateForAll = "190820";
 
-            //apelam kiwiApi cu parametrii:   $filterDepartureCity;  $filterCities;  $filterDate;  $filterPass;  $filterPrice;  $filterWeather;
+            //apelam kiwiApi cu parametrii:   $filterDepartureCity;  $filterCities;  $filterDate;  $filterPrice;  $filterWeather;
 
-            $json = $model->getFlight($model->filterDepartureCity, $model->filterCities, $model->filterDate  , $model->filterPass  , $model->filterPrice , $model->filterWeather); // cu parametru vect Filters
+            $json = $model->getFlight($model->filterDepartureCity, $model->filterCities, $model->filterDate, $model->filterPrice); // cu parametru vect Filters
             //$json = getFlight($flyFrom, $countryCode,$date_from);
             // $json = $model->getFlight("BUH", ["IT"], $dateFlight,$dateFlight,1,1000);
             for($i=0; $i<5; $i=$i+1){ //$i<count($json)
@@ -244,7 +244,7 @@ for ($i=10; $i < 20; $i++) {
   if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
 
   var displayElement = parent.getElementsByClassName("rangeValues")[0];
-      displayElement.innerHTML = slide1 + "$ - " + slide2 + "$";
+      displayElement.innerHTML = slide1 + "EUR -> " + slide2 + "EUR";
 
 
 }

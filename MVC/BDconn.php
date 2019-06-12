@@ -3,7 +3,7 @@
 $dbServerName = "localhost";
 $dbUsername = "root";
 $dbPass = "";
-$dbName = "tw";
+$dbName = "TripInspire";
 
 $conn = mysqli_connect($dbServerName, $dbUsername, $dbPass, $dbName);
 

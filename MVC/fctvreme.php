@@ -1,7 +1,7 @@
 <?php
 
 function getWeather2($city, $country, $date){
-$myUrl = "https://api.weatherbit.io/v2.0/forecast/daily?city=" . $city . ",". $country . "&key=9ad9717f138149cbb2cae294afbfe2a1";
+$myUrl = "https://api.weatherbit.io/v2.0/forecast/daily?city=" . $city . "&key=9ad9717f138149cbb2cae294afbfe2a1";
 define('URL2', $myUrl);
 
 $c = curl_init ();
@@ -35,7 +35,7 @@ return $json;
 
 }
 
-$json = getWeather2("Iasi", "ro", "2019-06-10");
+$json = getWeather2("Iasi", "romania", "2019-06-13");
 echo json_encode($json);
 
 

@@ -46,21 +46,37 @@ class FiltersModel{
 
   }
 //adauga restul parametrilor in getFlight -> toate filtrele
-  public function getFlight($flyFrom, $flyToArray,$date_from, $date_to, $minPrice, $maxPrice){
-    if(!isset($flyFrom)){
-      $flyFrom = "RO";
+  public function getFlight($filterDepartureCity,  $filterCities,  $filterDate,  $filterPrice){
+    if(!isset($filterDepartureCity)){
+      $filterDepartureCity = "IAS";
     }
-    $myUrl = "https://api.skypicker.com/flights?select_airlines=FR,W6&limit=5000&fly_from=" . $flyFrom . "&fly_to=";
-    $myUrl = $myUrl . $flyToArray[0];
-    for($i=1; $i<count($flyToArray); $i=$i+1)
-      $myUrl = $myUrl . ',' . $flyToArray[$i];
-    $myUrl = $myUrl . "&date_from=" .$date_from .  "&date_to=" . $date_to;
-    $myUrl = $myUrl . "&price_from=".  $minPrice   . "&price_to=" . $maxPrice;
+    $myUrl = "https://api.skypicker.com/flights?select_airlines=FR,W6&limit=5000&fly_from=" . $filterDepartureCity . "&fly_to=";
+
+if(!isset($filterCities[0])){
+  //all
+  // $filterCities = getAllCities();
+  $filterCities[0] = "PAR";
+}
+
+if(!isset($filterDate)){
+  $filterDate = date("d/m/Y", strtotime("+1 day"));
+}
+
+
+if(!isset($filterPrice[0])){
+  $filterPrice[0] = 1;
+  $filterPrice[1] = 38000;
+}
+
+    $myUrl = $myUrl . $filterCities[0];
+    for($i=1; $i<count($filterCities); $i=$i+1)
+      $myUrl = $myUrl . ',' . $filterCities[$i];
+    $myUrl = $myUrl . "&date_from=" .$filterDate;
+    $myUrl = $myUrl . "&price_from=".  $filterPrice[0]   . "&price_to=" . $filterPrice[1];
     // echo $myUrl;
     // $URLL = "https://api.skypicker.com/flights?fly_to=IT,FR&date_from=08/08/2019&date_to=08/09/2019";
     // define('URL2', $URLL);
-
-
+echo $myUrl;
     $c = curl_init();
     curl_setopt ($c, CURLOPT_URL, $myUrl);
     curl_setopt ($c, CURLOPT_RETURNTRANSFER, true);
@@ -163,8 +179,9 @@ class FiltersModel{
 
 
 
-public function generateFilterForm($idForm, $idInput, $valueInput){
-    echo "<div class=\"form\" id=\"". $idForm  ."\">";
+public function generateFilterFormWithScroll($idForm, $idInput, $valueInput, $titlu){
+    echo "<div class=\"form1\" id=\"". $idForm  ."\">";
+    echo "<div class=\"textfonts\">".$titlu."</div> <br>";
 
     for ($i=0; $i <count($idInput) ; $i++) {
       echo "  <label class=\"container\">
@@ -174,6 +191,20 @@ public function generateFilterForm($idForm, $idInput, $valueInput){
     }
     echo"</div>";
   }
+
+
+  public function generateFilterForm($idForm, $idInput, $valueInput, $titlu){
+      echo "<div class=\"form\" id=\"". $idForm  ."\">";
+        echo "<div class=\"textfonts\">".$titlu."</div> <br>";
+
+      for ($i=0; $i <count($idInput) ; $i++) {
+        echo "  <label class=\"container\">
+              <input type=\"checkbox\" name=\"". $idInput[$i] ."\"> ".  $valueInput[$i]  ."
+              <span class=\"checkmark\"></span>
+          </label><br>";
+      }
+      echo"</div>";
+    }
 
 public function generateFilterCrit($idInput, $valueInput){
   for ($i=0; $i <count($idInput) ; $i++) {
@@ -240,7 +271,7 @@ function getTari(){
 }
 }
 
-function getAir(){
+public function getAir(){
 
 
   foreach ($this->tari as $c => $t) {
@@ -249,19 +280,20 @@ function getAir(){
       // echo $t[$i] . ", ";
       $this->OnAir[$t[$i]] = array();
 
-      $sql = "SELECT oras, aeroport FROM aeroporturi where tara like '%" . $t[$i] . "%'";
+      $sql = "SELECT oras, aeroport FROM aeroporturi where tara like '%" . $t[$i] . "%';";
       // echo $sql;
       $result = mysqli_query($this->conn, $sql);
       $resultCheck = mysqli_num_rows($result);
+      // echo $resultCheck;
 
       for($k = 0; $k < $resultCheck; $k = $k+1){
         $row = mysqli_fetch_assoc($result);
         $CurrOras = $row['oras'];
         $CurrAir = $row['aeroport'];
         $newArray = array($CurrOras, $CurrAir);
-
+        // echo "aici: " . $t[$i] . "--";
         array_push($this->OnAir[$t[$i]], $newArray);
-        // echo $t[$i][0][0] . " --> " . $t[$i][0][1] . " " ;
+        // echo $t[$i][0][0] . " > " . $t[$i][0][1] . " " ;
       }
     }
 
