@@ -1,9 +1,17 @@
 <?php
 function getDateFormat($data,$format){
+    
+    $frontCheck = strpos($data,'.');
     $wizzCheck = strpos($data,'-');
     $kiwiCheck = strpos($data,'/');
     
-    if($wizzCheck){
+    if($frontCheck){
+        $zi = strtok($data, ".");
+        $luna = strtok(".");
+        $an = strtok(".");
+    }
+
+    else if($wizzCheck){
         $an = strtok($data, "-");
         $luna = strtok("-");
         $zi = strtok("-");
@@ -32,6 +40,15 @@ function getDateFormat($data,$format){
 }
 
 //teste
+
+echo getDateFormat("20.08.2019","wizz");
+echo '<br>';
+echo getDateFormat("20.08.2019","kiwi");
+echo '<br>';
+echo getDateFormat("20.08.2019","sky");
+
+echo '<br>';echo '<br>';
+
 
 echo getDateFormat("20/08/2019","wizz");
 echo '<br>';
