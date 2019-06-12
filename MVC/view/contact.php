@@ -62,25 +62,28 @@ $controller->setModel($model);
       <textarea placeholder="Write something.." name="text" style="height:200px"></textarea>
 
       <input type="submit" name="submit">
-    </form>
-  </div>
-
-  <?php
+      <?php
   if(isset($_POST['submit'])){
     $controller->getInput();
   }
- 
+  if (isset($_GET['contact']) && !empty($_GET['contact'])) {
+      $controller->{$_GET['contact']}();
+      if($_GET['contact']=="success"){
+        $color="green";
+      }
+      else $color="red";
+      echo "<br><br><p style=\"color:$color;\">".$model->tstring."</p>" ;
+           
+  }
   ?>
-
-  <footer class="newsletter">
-    <p class="titleText">Subscribe to our newsletter</p>
-    <p class="newsText">Subscribe to our newsletter to
-      give you awesome ideas about places to visit</p>
-    <form action="#" class="newsForm">
-      <input type="mail" class="mailbox" placeholder="Enter email">
-      <input type="submit" value="Subscribe" class="newsSubmit">
     </form>
-  </footer>
+    
+  </div>
+
+  <?php
+    $_SESSION['page']="contact.php";
+    include 'newsletter.php';
+  ?>
 
 </body>
 

@@ -1,6 +1,7 @@
 <?php
     class ContactModel{
 
+        public $tstring;
         public $controller;
         public function __construct($c){
             $this->controller = $c;
