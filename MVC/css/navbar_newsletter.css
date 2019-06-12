@@ -1,0 +1,77 @@
+
+
+.newsletter{
+  /*position:fixed;*/
+  bottom:0!important;
+  width: 100%;
+  margin: 0;
+  height: 40%;
+  background-image: url("../images/newsletter.png");
+}
+
+
+.newsletter_fixed{
+  position:fixed;
+  bottom:0!important;
+  width: 100%;
+  margin: 0;
+  height: 100px;
+  background-image: url("../images/newsletter.png");
+}
+
+
+
+
+.titleText{
+  padding-top: 80px;
+  padding-bottom: 35px;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 40px;
+  color:white;
+}
+
+.newsText{
+  padding-bottom: 30px;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 15px;
+  color:white;
+  
+}
+
+.newsForm{
+  margin: 0;
+  margin-left: 30%;
+}
+
+.mailbox{
+  padding: 12px !important;
+  border: 1.5px solid #ccc !important;
+  border-radius: 4px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #fff !important;
+  border-radius: 4px !important;
+  box-sizing: border-box !important;
+  background-color: transparent !important;
+}
+
+.mailbox::placeholder{
+  color:white;
+}
+
+.newsSubmit{
+    padding: 12px 20px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+
+.newsSubmit:hover{
+  opacity:0.5;
+}
+

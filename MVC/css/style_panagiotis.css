@@ -1,0 +1,149 @@
+*{
+  box-sizing: border-box;
+  margin:0px;
+  padding:0px;
+}
+
+body {
+  background:url(../images/beach.jpg);/*imaginea folosita la background*/
+  background-size: cover;/*am setat fundalul pe tot ecranul*/
+  font-family: 'Titillium Web', sans-serif;/*fonturile folosite*/
+ }
+
+
+.form {
+  padding: 40px;/*dimensiunea de la box exterior la inside things*/
+  max-width: 600px;/*dimensiunea in latime a boxului exterior*/
+  margin: 200px auto;/*distanta 40px e fata de sus/jos auto->dreapta/stanga*/
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);/*umbra boxului exterior*/
+  background: rgba(192,192,192,0.5); /*opacity grey color background*/
+}
+
+
+
+
+.tab-group {
+  list-style: none;/*nu am o lista de asta fac asa*/
+  margin: 0 0 40px 0;/*40px e distanta de la registe/login bottons la register/login scris  in rest e 0 ca are padding*/
+}
+
+
+
+
+
+.tab-group:after {/*pune spatiu liber dupa primul tab-group*/
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+
+
+.tab-group li a {
+
+  text-decoration: none;/*nu am textul subliniat linkable*/
+  padding: 15px;/*de la text register/login pana sus/jos*/
+  background: #000;/*pune negru acolo unde nu e selectat butonul*/
+  color: #fff;/*pune alb la scris registe/login la butoane*/
+  font-size: 20px;/*dimensiunea textului register/login-alb*/
+  float: left;/*the position of the active botton*/
+  width: 50%;/*50% e procentul din total insideului care pe care il ia fiecare buton*/
+  text-align: center;/*textul register/login din butoane*/
+  cursor: pointer;/*ce fel de mouse o sa fie peste butoane registe/login*/
+}
+
+.tab-group li a:hover {
+  background: #179b77;/*culoare hover peste register/login */
+ }
+
+.tab-group .active a {
+  background: #1ab188;/*culoare cand butonul e activ*/
+}
+
+
+h1 {
+  text-align: center;/*aranjeaza pe mijloc REGISTER/LOGIN text*/
+  color: #fff;/*REGISTER/LOGIN text culoare alb*/
+  font-weight: 300;/*grosimiea fontului REGISTER/LOGIN*/
+  margin: 0 0 40px; /*REGISTER/LOGIN text e la 40px de marginea de jos*/
+}
+
+placeholder{
+	color:#fff;/*culoare chestiilor pe care le poti completa*/
+}
+
+::placeholder {
+  color: white/*rgb(149,149,149)*/;/*culoare scris placeholder*/
+
+}
+
+
+input {
+  font-size: 22px;/*dimensiunea scrisului din casute*/
+  width: 100%;/*latimea casutelor*/
+  height: 100%;/*lungimea casutelor*/
+  padding: 5px 10px;/*de la margini la ce scrii in casute*/
+  background: none;/*fac transparent fundalul la unde scrie*/
+  background-image: none;/*fac transparent fundalul la unde scrie*/
+  border: 1px solid #fff;/*conturul spatiilor de scris*/
+  color: #fff;/*culoarea alb pentru interior unde scrii*/
+ }
+
+
+.field-wrap {
+    margin-bottom: 40px;/*distanta dintre casute gen cati pixeli sunt intre ele*/
+}
+
+.top-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.top-row > div {
+  float: left;/* pozitia de care depinde butonului cu lastname*/
+  width: 48%;/*procentul latimii casutelor cu lastname/fisrtname*/
+  margin-right: 4%;/*distanta dintre cele 2 casute firstname/lastname */
+}
+.top-row > div:last-child {
+  margin: 0;
+}/*pune pe top row alea unu langa celalalt*/
+
+.button {
+  border: 0;/*nu am contur la butonul GET STARTED de asta e 0*/
+  padding: 15px 0;/*distanta de la GET STARTED sus si jos*/
+  font-size: 2rem;/*mareste cam de 2 ore fontul folosit*/
+  font-weight: 550;/*grosimea fontului folosit la GET STARTED*/
+  text-transform: uppercase;/*e scris cu capslock GET STARTED*/
+  letter-spacing: .1em;/*inca o data pe cat era distanta dintre litere (asta face "em")*/
+  background: #1ab188;/*culoarea folosita la backgroundul butonului GET STARTED*/
+  color: #ffffff;/*culoarea alb folosita la GET STARTED*/
+
+  }
+  .button a{
+	  text-decoration:none;
+	  color:white;
+  }
+
+.button:hover {
+  background: #179b77;/*culoarea de hover de peste GET STARTED*/
+}/*face un hover peste getstarted*/
+
+.button-block {
+   width: 100%;/*latimea butonului GET STARTED*/
+}
+
+
+  @media (min-width: 576px) {
+    .form {
+      max-width: 288px; } }
+  @media (min-width: 768px) {
+    .form {
+      max-width: 384px; } }
+  @media (min-width: 992px) {
+    .form {
+      max-width: 496px; } }
+  @media (min-width: 1200px) {
+    .form {
+      max-width: 600px; } }
