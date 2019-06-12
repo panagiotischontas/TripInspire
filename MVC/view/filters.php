@@ -7,10 +7,12 @@
 
 require_once '../controller/FiltersController.php';
 require_once '../model/FiltersModel.php';
+require_once '../BDconn.php';
 
 session_start();
 $controller = new FiltersController();
-$model = new FiltersModel($controller);
+// echo $conn;
+$model = new FiltersModel($controller, $conn);
 
 $controller->setModel($model);
 
@@ -55,14 +57,40 @@ $controller->setModel($model);
         <div class="filtersLeft">
           <form mathod="GET" action="#">
                 <?php
-                $idForm = "orase";
-                $idInput = ["iasi", "bucuresti", "timisoara"];
-                $valueInput = ["Iasi", "Bucuresti", "Timisoara"];
-                $model->generateFilterForm($idForm, $idInput, $valueInput);
+
                 $idForm = "Continente";
-                $idInput = ["Asia", "America de Sud", "America de nord", "Africa", "Europa", "Australia"];
-                $valueInput = ["Asia", "America de Sud", "America de nord", "Africa", "Europa", "Australia"];
+
+                $i = 0;
+                foreach ($model->tari as $key => $value) {
+                  $idInput[$i] = $key;
+                  $valueInput[$i] = $key;
+                  $i=$i+1;
+                }
                 $model->generateFilterForm($idForm, $idInput, $valueInput);
+
+                $idForm = "tara";
+                $i = 0;
+                foreach ($model->OnAir as $key => $value) {
+                  $idInput[$i] = $key;
+                  $valueInput[$i] = $key;
+                  $i=$i+1;
+                }
+                $model->generateFilterForm($idForm, $idInput, $valueInput);
+
+
+                $idForm = "orase";
+                $i = 0;
+                foreach ($model->OnAir as $key => $t) {
+                  for ($h=0; $h < count($t); $h++) {
+                    $idInput[$i] = $t[$h][0];
+                    $valueInput[$i] = $t[$h][0];
+                    $i=$i+1;
+                   }
+
+                }
+                $model->generateFilterForm($idForm, $idInput, $valueInput);
+
+
                 $idForm = "Clasa";
                 $idInput = ["Business", "Eco"];
                 $valueInput = ["Business", "Eco"];
@@ -97,11 +125,9 @@ $controller->setModel($model);
               </form>
 
               <?php
-if(isset($_GET['submitFilters'])){
-  $controller->getInput();
-
-}
-
+                if(isset($_GET['submitFilters'])){
+                  $controller->getInput();
+                }
                ?>
         </div>
     </div>
@@ -111,51 +137,56 @@ if(isset($_GET['submitFilters'])){
 
           <?php
           //$model->getFilters(); ->in vect Filters sa zicem
-          $dateFlight = "08/08/2019";
-          $dateForFR = "2019-08-08";
-          $dateForAll = "190808";
-            $json = $model->getFlight("OTP", ["RO", "FR"],$dateFlight,$dateFlight); // cu parametru vect Filters
+          $dateFlight = "20/08/2019";
+          $dateForFR = "2019-08-20";
+          $dateForAll = "190820";
+
+            //apelam kiwiApi cu parametrii:   $filterDepartureCity;  $filterCities;  $filterDate;  $filterPass;  $filterPrice;  $filterWeather;
+
+            $json = $model->getFlight($model->filterDepartureCity, $model->filterCities, $model->filterDate  , $model->filterPass  , $model->filterPrice , $model->filterWeather); // cu parametru vect Filters
             //$json = getFlight($flyFrom, $countryCode,$date_from);
-            for($i=0; $i<40; $i=$i+1){ //$i<count($json)
+            // $json = $model->getFlight("BUH", ["IT"], $dateFlight,$dateFlight,1,1000);
+            for($i=0; $i<5; $i=$i+1){ //$i<count($json)
 
 
-echo "<div class=\"box clearfix\">
-    <div class=\"box-left\">
-    <img src=\"../sibiu.jpg\" alt=\"location\">";
-
- // $model->getPicture($json[$i]['cityTo']);
+              echo "<div class=\"box clearfix\">
+                  <div class=\"box-left\"><img src=\"../sibiu.jpg\" alt=\"location\">";
 
 
-echo "  </div>
-  <div class=\"box-right\">
-      <div class=\"search-bar-boxRightText\">";
-      echo "<p class=\"bold\">" . $json[$i]['cityTo'] .  "</p>";
-
-      if (count($json[$i]['route']) == 1) {
-        // code...
-        $toEcho = " Zbor direct";
-        $link="#";
-            $link =  $model->getLink($json[$i]['airlines'][0], $json[$i]['routes'][0][0], $json[$i]['routes'][0][1], $dateForFR,$dateForAll);
-            // echo $link;
-      }else{
-        $link= "https://www.skyscanner.ro/transport/flights/"  .$json[$i]['routes'][0][0]. "/".$json[$i]['routes'][0][1] ."/" . $dateForAll . "//?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false#results";
-        $esc=count($json[$i]['route'])-1;
-        $toEcho = " cu escala la: ";
-        for($j=0;$j<$esc; $j=$j+1)
-          $toEcho = $toEcho . $json[$i]['route'][$j]['cityTo'] . "  ";
-      }
+               // $model->getPicture($json[$i]['cityTo']);
+                 // <img src=\"../sibiu.jpg\" alt=\"location\">
 
 
+              echo "  </div>
+                <div class=\"box-right\">
+                    <div class=\"search-bar-boxRightText\">";
+                    echo "<p class=\"bold\">" . $json[$i]['cityTo'] .  "</p>";
 
-      echo"<p>". $toEcho ."</p>
-      <p> <b>To:</b> 16/06/2018</p>";
-      echo "<p> <b>Price:</b>". $json[$i]['price'] . " EUR" ."</p>";
-      echo "</div>  <div class=\"search-bar-boxRightButtons\">
-          <button type=\"submit\" class=\"cardsButton\"><a href=\"#\">View</a></button>
-        <button type=\"submit\" class=\"cardsButton\"><a href=\"profile.php\">Add</a></button>
-        <button type=\"submit\" class=\"cardsButton\"><a href='".$link."'>Buy</a></button>
-      </div>";
-?>
+                    if (count($json[$i]['route']) == 1) {
+                      // code...
+                      $toEcho = " Zbor direct";
+                      $link="#";
+                          $link =  $model->getLink($json[$i]['airlines'][0], $json[$i]['routes'][0][0], $json[$i]['routes'][0][1], $dateForFR,$dateForAll);
+                          // echo $link;
+                    }else{
+                      $link= "https://www.skyscanner.ro/transport/flights/"  .$json[$i]['routes'][0][0]. "/".$json[$i]['routes'][0][1] ."/" . $dateForAll . "//?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false#results";
+                      $esc=count($json[$i]['route'])-1;
+                      $toEcho = " cu escala la: ";
+                      for($j=0;$j<$esc; $j=$j+1)
+                        $toEcho = $toEcho . $json[$i]['route'][$j]['cityTo'] . "  ";
+                    }
+
+
+
+                    echo"<p>". $json[$i]['routes'][0][1] ."</p>
+                    <p> <b>To:</b> 16/06/2018</p>";
+                    echo "<p> <b>Price:</b>". $json[$i]['price'] . " EUR" ."</p>";
+                    echo "</div>  <div class=\"search-bar-boxRightButtons\">
+                        <button type=\"submit\" class=\"cardsButton\"><a href=\"#\">View</a></button>
+                      <button type=\"submit\" class=\"cardsButton\"><a href=\"profile.php\">Add</a></button>
+                      <button type=\"submit\" class=\"cardsButton\"><a href='".$link."'>Buy</a></button>
+                    </div>";
+              ?>
     <!-- </div>  <div class="search-bar-boxRightButtons">
           <button type="submit" class="cardsButton"><a href="#">View</a></button>
         <button type="submit" class="cardsButton"><a href="profile.php">Add</a></button>
@@ -166,9 +197,7 @@ echo "  </div>
   </div>
 </div>
     <?php
-
           }
-
            ?>
         </div>
     </div>
@@ -181,7 +210,7 @@ for ($i=10; $i < 20; $i++) {
   echo "<div class=\"box clearfix\">
       <div class=\"box-left\">    <img src=\"../sibiu.jpg\" alt=\"location\">";
   // $model->getPicture($json[$i]['cityTo']);
-  echo "  </div>
+  echo "</div>
     <div class=\"box-right\">
         <div class=\"search-bar-boxRightText\">";
         echo "<p class=\"bold\">" . $json[$i]['cityTo'] .  "</p>";

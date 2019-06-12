@@ -20,7 +20,7 @@ $controller->setModel($model);
 <head>
 
   <title>TripInspire</title>
-  <link rel="stylesheet" href="../css/style_panagiotis.css">
+  <link rel="stylesheet" href="../css/style-pana.css">
   <link rel="stylesheet" href="../css/diana_register.css">
 
 

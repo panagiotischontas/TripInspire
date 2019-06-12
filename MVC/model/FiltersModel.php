@@ -7,16 +7,43 @@
 
 
 
-$countryCode = ["AF", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BQ", "BA", "BW", "BV", "BR", "IO", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "HR", "CU", "CW", "CY", "CZ", "CI", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "VA", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KP", "KR", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MK", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RO", "RU", "RW", "RE", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "SS", "ES", "LK", "SD", "SR", "SJ", "SZ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW"];
+  $countryCode = ["AF", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BQ", "BA", "BW", "BV", "BR", "IO", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "HR", "CU", "CW", "CY", "CZ", "CI", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "VA", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KP", "KR", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MK", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RO", "RU", "RW", "RE", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "SS", "ES", "LK", "SD", "SR", "SJ", "SZ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW"];
 
 class FiltersModel{
 
   public $tstring;
   public $controller;
+  public $filters;
+  public $tari;
+  public $conn;
+  public $OnAir;
+  public $filterDepartureCity;
+  public $filterCities;
+  public $filterDate;
+  public $filterPass;
+  public $filterPrice;
+  public $filterWeather;
 
 
-  public function __construct($c){
+  public function __construct($c, $conn){
     $this->controller = $c;
+         $this->conn = $conn;
+    $this->filters = array( "Continente" => array("Asia", "America de Sud", "America de nord", "Africa", "Europa", "Australia"),
+    "tara" => array("Romania", "Italia", "Spania", "Franta"),
+     "orase" => array("iasi", "bucuresti", "timisoara"),
+     "clasa" => array("Business", "Eco"),
+     "escala" => array("Zbor direct", "Maxim 1 escala", "Maxim 2 escale"));
+     $this->getTari();
+     $this->getAir();
+
+
+      $this->filterCities = array();
+      $this->filterPass  = array();
+      $this->filterPrice = array();
+      $this->filterWeather = array();
+
+     // echo $this->conn;
+
   }
 //adauga restul parametrilor in getFlight -> toate filtrele
   public function getFlight($flyFrom, $flyToArray,$date_from, $date_to, $minPrice, $maxPrice){
@@ -28,7 +55,8 @@ class FiltersModel{
     for($i=1; $i<count($flyToArray); $i=$i+1)
       $myUrl = $myUrl . ',' . $flyToArray[$i];
     $myUrl = $myUrl . "&date_from=" .$date_from .  "&date_to=" . $date_to;
-    $myUrl  $myUrl . "price_from= ".  $minPrice   . "&price_to=" . $maxPrice;
+    $myUrl = $myUrl . "&price_from=".  $minPrice   . "&price_to=" . $maxPrice;
+    // echo $myUrl;
     // $URLL = "https://api.skypicker.com/flights?fly_to=IT,FR&date_from=08/08/2019&date_to=08/09/2019";
     // define('URL2', $URLL);
 
@@ -180,9 +208,75 @@ function getLink($airline, $air1, $air2, $dateForFR, $dateForAll){
   return $link;
 }
 
+function getTari(){
 
+  $this->tari = array();
+  $this->OnAir = array();
+// echo $this->conn . " ";
+  $sql = "SELECT distinct continent FROM continente";
+  $result = mysqli_query($this->conn, $sql);
+  $resultCheck = mysqli_num_rows($result);
+
+  for($i = 0; $i < $resultCheck; $i = $i+1){
+    $row = mysqli_fetch_assoc($result);
+
+    $ContCurr = $row['continent'];
+    $newArray = $ContCurr;
+    $this->tari[$newArray] = array();
+
+    $sql2 = "SELECT tara FROM continente where trim(continent) like '%" . $ContCurr ."%'";
+    // echo $sql2;
+    $result2 = mysqli_query($this->conn, $sql2);
+    $resultCheck2 = mysqli_num_rows($result2);
+
+    for ($j=0; $j < $resultCheck2; $j++) {
+      $row2 = mysqli_fetch_assoc($result2);
+
+      $CurrCountry = $row2['tara'];
+      array_push($this->tari[$newArray], $CurrCountry);
+      // echo $CurrCountry;
+      // $this->OrAir[$CurrCountry] = array();
+    }
+}
+}
+
+function getAir(){
+
+
+  foreach ($this->tari as $c => $t) {
+    // echo $c .  ": ";
+    for($i = 0; $i <count($t); $i = $i+1){
+      // echo $t[$i] . ", ";
+      $this->OnAir[$t[$i]] = array();
+
+      $sql = "SELECT oras, aeroport FROM aeroporturi where tara like '%" . $t[$i] . "%'";
+      // echo $sql;
+      $result = mysqli_query($this->conn, $sql);
+      $resultCheck = mysqli_num_rows($result);
+
+      for($k = 0; $k < $resultCheck; $k = $k+1){
+        $row = mysqli_fetch_assoc($result);
+        $CurrOras = $row['oras'];
+        $CurrAir = $row['aeroport'];
+        $newArray = array($CurrOras, $CurrAir);
+
+        array_push($this->OnAir[$t[$i]], $newArray);
+        // echo $t[$i][0][0] . " --> " . $t[$i][0][1] . " " ;
+      }
+    }
+
+  }
+
+    // foreach ($this->OnAir as $c => $t) {
+    //   echo $c . ": " . count($t); //tara
+    //   echo "<br /><br />";
+    // for ($h=0; $h < count($t); $h++) {
+    //     echo $t[$h][0] . "--> " . $t[$h][1] . ",      ";
+    // }
+
+  //}
 
 }
 
 
- ?>
+}
