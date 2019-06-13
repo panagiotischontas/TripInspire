@@ -76,20 +76,6 @@ body{
   transform: rotate(45deg);
 }
 
-.form1 {
-    margin-top:40px;
-    padding: 20px;/*dimensiunea de la box exterior la inside things*/
-    max-width: 300px;/*dimensiunea in latime a boxului exterior*/
-    margin-left: 30px;/*distanta 40px e fata de sus/jos auto->dreapta/stanga*/
-    /*box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);/*umbra boxului exterior*/
-    /*background: #bfbfbf; /*opacity grey color background*/
-    margin-bottom:40px;
-    background-color: white;
-    border-radius: 5px;
-    overflow: overlay;
-    height:350px;
-}
-
 
 .form {
   margin-top:40px;
@@ -102,6 +88,22 @@ body{
   background-color: white;
   border-radius: 5px;
   }
+  
+  
+  .form1 {
+    margin-top:40px;
+    padding: 20px;/*dimensiunea de la box exterior la inside things*/
+    max-width: 300px;/*dimensiunea in latime a boxului exterior*/
+    margin-left: 30px;/*distanta 40px e fata de sus/jos auto->dreapta/stanga*/
+    /*box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);/*umbra boxului exterior*/
+    /*background: #bfbfbf; /*opacity grey color background*/
+    margin-bottom:40px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: overlay;
+    height:350px;
+    }
+
 
 
   .button {
@@ -118,14 +120,18 @@ body{
   background: #1ab188;/*culoarea folosita la backgroundul butonului GET STARTED*/
   color: #ffffff;/*culoarea alb folosita la GET STARTED*/
   }
-
+  
   .button:hover {
   background: #179b77;/*culoarea de hover de peste GET STARTED*/
 }/*face un hover peste getstarted*/
 
 
-.tab-group  {
 
+
+
+
+.tab-group  {
+ 
   margin-bottom:30px;
   text-decoration: none;/*nu am textul subliniat linkable*/
   padding: 0px;/*de la text register/login pana sus/jos*/

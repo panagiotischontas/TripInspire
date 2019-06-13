@@ -24,6 +24,7 @@ class FiltersModel{
   public $filterPass;
   public $filterPrice;
   public $filterWeather;
+  public $filterStops;
 
   public $OraseAfisate;
 
@@ -50,7 +51,7 @@ class FiltersModel{
 
   }
 //adauga restul parametrilor in getFlight -> toate filtrele
-  public function getFlight($filterDepartureCity,  $filterCities,  $filterDate,  $filterPrice){
+  public function getFlight($filterDepartureCity,  $filterCities,  $filterDate,  $filterPrice, $filterStops){
     if(!isset($filterDepartureCity)){
       $filterDepartureCity = "IAS";
     }
@@ -72,12 +73,17 @@ class FiltersModel{
       $filterPrice[1] = 38000;
     }
 
+    if(!isset($filterStops)){
+      $filterStops = 3;
+    }
+
     $myUrl = $myUrl . $filterCities[0];
     for($i=1; $i<count($filterCities); $i=$i+1)
       $myUrl = $myUrl . ',' . $filterCities[$i];
     $myUrl = $myUrl . "&date_from=" .$filterDate;
     $myUrl = $myUrl . "&price_from=".  $filterPrice[0]   . "&price_to=" . $filterPrice[1];
-    echo $myUrl;
+    // echo $myUrl;
+    $myUrl = $myUrl . "&max_stopovers=" . $filterStops;
     // $URLL = "https://api.skypicker.com/flights?fly_to=IT,FR&date_from=08/08/2019&date_to=08/09/2019";
     // define('URL2', $URLL);
 // echo $myUrl;

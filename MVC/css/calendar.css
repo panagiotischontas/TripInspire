@@ -17,8 +17,21 @@
     font: 13px/1.5 "Helvetica Neue", Helvatica, Arial, san-serif;
     display: table;
     position: absolute;
-    margin-top: 2%;
+    margin-top: 6%;
+    margin-left: 165%;
+    width:250px;
+}
+
+#cal-checkOut1 {
+    -moz-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    margin: 50px auto;
+    font: 13px/1.5 "Helvetica Neue", Helvatica, Arial, san-serif;
+    display: table;
+    position: absolute;
+    margin-top: 6%;
     margin-left: 25%;
+    width:250px;
 }
 
 /*header bar---------------------*/
@@ -83,6 +96,7 @@
     -moz-border-radius-topleft: 5px;
     border-top-left-radius: 5px;
     border-right: 1px solid #ae2a0c;
+    color:white;
 }
 
 #cal-checkIn .header .right.button, #cal-checkOut .header .right.button {
@@ -92,6 +106,7 @@
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topright: 5px;
     border-top-right-radius: 5px;
+    color:white;
 }
 
 #cal-checkIn .header .button:hover, #cal-checkOut .header .button:hover {
@@ -104,6 +119,7 @@
     letter-spacing: 1px;
     width: 100%;
     text-align: center;
+    color:white;
 }
 
 /*day headers---------------------*/
@@ -184,6 +200,8 @@
 }
 #form-wrapper {
     position: relative;
+    /* display:flex; */
+
 }
 
 #cal2 {
@@ -364,3 +382,64 @@
 #cal2 #cal-frame table.temp {
     position: absolute;
 }
+
+/*DINAMIIIIC SEARCH!!!!!! */
+
+
+
+/*the container must be positioned relative:*/
+.autocomplete {
+    position: relative;
+    display: inline-block;
+  }
+  
+  input {
+    border: 1px solid transparent;
+    /* background-color: #f1f1f1; */
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* input[type=text] {
+    background-color: #f1f1f1;
+    width: 100%;
+  } */
+  
+  /* input[type=submit] {
+    background-color: DodgerBlue;
+    color: #fff;
+    cursor: pointer;
+  } */
+  
+  .autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+  
+  .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff; 
+    border-bottom: 1px solid #d4d4d4; 
+  }
+  
+  /*when hovering an item:*/
+  .autocomplete-items div:hover {
+    background-color: #e9e9e9; 
+  }
+  
+  /*when navigating through the items using the arrow keys:*/
+  /* .autocomplete-active {
+    background-color: DodgerBlue !important; 
+    color: #ffffff; 
+  } */
+
+
+/*DINAMIIIIC SEARCH!!!!!! */

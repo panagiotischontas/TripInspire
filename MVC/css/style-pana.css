@@ -17,7 +17,6 @@ body {
   margin: 120px auto;/*distanta 40px e fata de sus/jos auto->dreapta/stanga*/
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);/*umbra boxului exterior*/
   background: rgba(192,192,192,0.5); /*opacity grey color background*/
-  /* overflow-y: scroll; */
 }
 
 
@@ -43,7 +42,7 @@ body {
 
 
 .tab-group li a {
-
+ 
   text-decoration: none;/*nu am textul subliniat linkable*/
   padding: 15px;/*de la text register/login pana sus/jos*/
   background: #000;/*pune negru acolo unde nu e selectat butonul*/
@@ -58,7 +57,7 @@ body {
 .tab-group li a:hover {
   background: #179b77;/*culoare hover peste register/login */
  }
-
+ 
 .tab-group .active a {
   background: #1ab188;/*culoare cand butonul e activ*/
 }
@@ -77,7 +76,7 @@ placeholder{
 
 ::placeholder {
   color: white/*rgb(149,149,149)*/;/*culoare scris placeholder*/
-
+     
 }
 
 
@@ -91,7 +90,7 @@ input {
   border: 1px solid #fff;/*conturul spatiilor de scris*/
   color: #fff;/*culoarea alb pentru interior unde scrii*/
  }
-
+ 
 
 .field-wrap {
     margin-bottom: 40px;/*distanta dintre casute gen cati pixeli sunt intre ele*/
@@ -120,7 +119,7 @@ input {
   letter-spacing: .1em;/*inca o data pe cat era distanta dintre litere (asta face "em")*/
   background: #1ab188;/*culoarea folosita la backgroundul butonului GET STARTED*/
   color: #ffffff;/*culoarea alb folosita la GET STARTED*/
-
+  
   }
   .button a{
 	  text-decoration:none;
@@ -135,7 +134,7 @@ input {
    width: 100%;/*latimea butonului GET STARTED*/
 }
 
-
+ 
   @media (min-width: 576px) {
     .form {
       max-width: 288px; } }
@@ -148,3 +147,8 @@ input {
   @media (min-width: 1200px) {
     .form {
       max-width: 600px; } }
+
+
+
+
+

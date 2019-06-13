@@ -12,6 +12,7 @@ span{
   position:absolute;
   /* min-width: 160px; */
   z-index: 10;
+  /* padding-top:50px; */
 }
 
 .dropdown:hover + .dropdown-content {
@@ -22,7 +23,10 @@ span{
 }
 .dropdown-content a{
 text-decoration:none;
-color:white;
+color:#666;
+padding-top:20px;
+text-align: left;
+
 }
 
 .dropdown-content:hover {

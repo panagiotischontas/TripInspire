@@ -3,7 +3,7 @@
 
 
 <?php
-
+ini_set('max_execution_time', 100);
 header("Content-Type: text/html; charset=ISO-8859-1");
 
 require_once '../controller/FiltersController.php';
@@ -15,9 +15,10 @@ session_start();
 $controller = new FiltersController();
 // echo $conn;
 $model = new FiltersModel($controller, $conn);
-for ($i=0; $i < count($model->AllCities); $i++) {
-  echo $model->AllCities[$i] . " " ;
-}
+// echo count($model->AllCities);
+// for ($i=0; $i < count($model->AllCities); $i++) {
+//   echo "\"".$model->AllCities[$i] ."\"". ", " ;
+// }
 $controller->setModel($model);
 
  ?>
@@ -30,6 +31,7 @@ $controller->setModel($model);
   <link href="../css/contact.css" rel="stylesheet" type="text/css">
   <link href="../css/navbar_newsletter.css" rel="stylesheet" type="text/css">
   <link href="../css/filters.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../css/calendar.css"/>
 
 
     <link rel="stylesheet" href="../css/check.css">
@@ -60,7 +62,43 @@ $controller->setModel($model);
     <div clas="main-content">
         <div class="filtersLeft">
           <form mathod="GET" action="#">
+
+
+
+            <div class="form">
+
+                <div class="textfonts">Your City</div>
+                <br>
+
+                <form autocomplete="off" action="/filters1.php">
+                        <div class="autocomplete" >
+                            <input id="myInput1" type="text" name="myCountry" placeholder="From...">
+                        </div>
+
+                </form>
+
+                <script type="text/javascript" src="../js/countries1.js"></script>
+
+
+            </div>
+
+            <div class="form">
+
+               <div class="textfonts">When</div>
+               <br>
+               <form action="#" id="form-wrapper">
+                   <input type="text" class="checkDate" id="checkOut" value="Check-in date" isCalendar="false"
+                   onclick="setCalendar(this)"/>
+               </form>
+               <script type="text/javascript" src="../js/pureJSCalendar1.js"></script>
+
+
+            </div>
                 <?php
+
+
+
+
                 $idForm = "Continente";
                 $i = 0;
                 foreach ($model->tari as $key => $value) {
@@ -109,7 +147,8 @@ $controller->setModel($model);
                     $model->generateFilterCrit($idInput, $valueInput);
                   ?>
                     <!--<h1>Custom Checkboxes</h1>-->
-
+                    <div class="textfonts">Price</div>
+                    <br>
                     <section class="range-slider">
                         <span class="rangeValues"></span>
                         <?php if(isset($_GET['minPrice'])){
@@ -124,8 +163,10 @@ $controller->setModel($model);
                         }
                         ?>
                     </section> <br>   <br><br>      <br>     <br>    <br>
-                    <section class="range-slider">
-                        <span class="rangeValues"></span>
+                    <div class="textfonts">Temperature</div>
+                    <br>
+                    <section id="test" class="range-slider1">
+                        <span class="rangeValues1"></span>
 
 <?php
                         if(isset($_GET['minWeather'])){
@@ -146,6 +187,8 @@ $controller->setModel($model);
 
 
                     <button type="submit" class="button button-block" name="submitFilters" />Search</button>
+                    <button type="submit" class="button button-block" />Save</button>
+
                 </div>
               </form>
 
@@ -156,6 +199,7 @@ $controller->setModel($model);
                ?>
         </div>
     </div>
+
 
     <div class="main-content2">
         <div class="wrapper">
@@ -168,7 +212,7 @@ $controller->setModel($model);
 
           //apelam kiwiApi cu parametrii:   $filterDepartureCity;  $filterCities;  $filterDate;  $filterPrice;  $filterWeather;
           $model->filterDate = "20/06/2019";
-          $json = $model->getFlight($model->filterDepartureCity, $model->$finalFilterCities, $model->filterDate, $model->filterPrice); // cu parametru vect Filters
+          $json = $model->getFlight($model->filterDepartureCity, $model->finalFilterCities, $model->filterDate, $model->filterPrice, $model->filterStops); // cu parametru vect Filters
           //$json = getFlight($flyFrom, $countryCode,$date_from);
           // $json = $model->getFlight("BUH", ["IT"], $dateFlight,$dateFlight,1,1000);
           if($json != 0){
@@ -236,7 +280,6 @@ $controller->setModel($model);
                 <p> ".$json[$i]['routes'][0][1]."</p>";
                 echo "<p> <b>Price:</b>". $json[$i]['price'] . " EUR" ."</p>";
                 echo "</div>  <div class=\"search-bar-boxRightButtons\">
-                    <button type=\"submit\" class=\"cardsButton\"><a href=\"#\">View</a></button>
                   <button type=\"submit\" class=\"cardsButton\"><a href=\"profile.php\">Add</a></button>
                   <button type=\"submit\" class=\"cardsButton\"><a href='".$link."'>Buy</a></button>
                 </div>";
@@ -260,6 +303,7 @@ $controller->setModel($model);
     <div class="main-content3">
         <div class="wrapper">
             <?php
+            if($json != 0)
 for ($i=$lg+1; $i < count($json); $i++) {
   // code...
 
@@ -294,21 +338,53 @@ for ($i=$lg+1; $i < count($json); $i++) {
       <div class=\"box-left\">    <img src=\"../sibiu.jpg\" alt=\"location\">";
   // $model->getPicture($json[$i]['cityTo']);
   echo "</div>
-    <div class=\"box-right\">
-        <div class=\"search-bar-boxRightText\">";
-        echo "<p class=\"bold\">" . $json[$i]['cityTo'] .  "</p>";
-        echo"<p> <b>From:</b> 10/06/2018</p>
-        <p> <b>To:</b> 16/06/2018</p>";
-        echo "<p> <b>Price:</b>". $json[$i]['price'] . " EUR" ."</p>";
-        echo "</div>";
+  <div class=\"box-right\">
+      <div class=\"search-bar-boxRightText\">";
+      echo "<p class=\"bold\">" . $json[$i]['cityTo'] .  "</p>";
+
+      if (count($json[$i]['route']) == 1) {
+        // code...
+        $toEcho = " Zbor direct";
+        $link="#";
+            $link =  $model->getLink($json[$i]['airlines'][0], $json[$i]['routes'][0][0], $json[$i]['routes'][0][1], $dateForFR,$dateForAll);
+            // echo $link;
+      }else{
+        $link= "https://www.skyscanner.ro/transport/flights/"  .$json[$i]['routes'][0][0]. "/".$json[$i]['routes'][0][1] ."/" . $dateForAll . "//?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false#results";
+        $esc=count($json[$i]['route'])-1;
+        $toEcho = " cu escala la: ";
+        for($j=0;$j<$esc; $j=$j+1)
+          $toEcho = $toEcho . $json[$i]['route'][$j]['cityTo'] . "  ";
+      }
+
+
+
+      echo"<p>".  $toEcho ."</p>
+      <p> ".$json[$i]['routes'][0][1]."</p>";
+      echo "<p> <b>Price:</b>". $json[$i]['price'] . " EUR" ."</p>";
+      echo "</div>  <div class=\"search-bar-boxRightButtons\">
+        <button type=\"submit\" class=\"cardsButton\"><a href=\"profile.php\">Add</a></button>
+        <button type=\"submit\" class=\"cardsButton\"><a href='".$link."'>Buy</a></button>
+      </div>";
         ?>
-        <div class="search-bar-boxRightButtons">
+        <!-- <div class="search-bar-boxRightButtons">
             <button type="submit" class="cardsButton"><a href="#">View</a></button>
             <button type="submit" class="cardsButton"><a href="profile.php">Add</a></button>
             <button type="submit" class="cardsButton"><a href="#">Buy</a></button>
-        </div>
+        </div> -->
     </div>
   </div>
+
+
+  <!-- echo"<p>".  $toEcho ."</p>
+  <p> ".$json[$i]['routes'][0][1]."</p>";
+  echo "<p> <b>Price:</b>". $json[$i]['price'] . " EUR" ."</p>";
+  echo "</div>  <div class=\"search-bar-boxRightButtons\">
+      <button type=\"submit\" class=\"cardsButton\"><a href=\"#\">View</a></button>
+    <button type=\"submit\" class=\"cardsButton\"><a href=\"profile.php\">Add</a></button>
+    <button type=\"submit\" class=\"cardsButton\"><a href='".$link."'>Buy</a></button>
+  </div>"; -->
+
+
   <?php
 } ?>
 
@@ -324,20 +400,36 @@ for ($i=$lg+1; $i < count($json); $i++) {
 
 <!-- newsletter -->
 <script>
-    function getVals(){
-  // Get slider values
-  var parent = this.parentNode;
-  var slides = parent.getElementsByTagName("input");
-    var slide1 = parseFloat( slides[0].value );
-    var slide2 = parseFloat( slides[1].value );
-  // Neither slider will clip the other, so make sure we determine which is larger
-  if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+function getVals(){
+// Get slider values
+var parent = this.parentNode;
+var slides = parent.getElementsByTagName("input");
+var slide1 = parseFloat( slides[0].value );
+var slide2 = parseFloat( slides[1].value );
+// Neither slider will clip the other, so make sure we determine which is larger
+if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
 
-  var displayElement = parent.getElementsByClassName("rangeValues")[0];
-      displayElement.innerHTML = slide1 + "EUR -> " + slide2 + "EUR";
+var displayElement = parent.getElementsByClassName("rangeValues")[0];
+  displayElement.innerHTML = slide1 + "EUR -> " + slide2 + "EUR";
 
 
 }
+
+function getVals1(){
+// Get slider values
+var parent = this.parentNode;
+var slides = parent.getElementsByTagName("input");
+var slide1 = parseFloat( slides[0].value );
+var slide2 = parseFloat( slides[1].value );
+// Neither slider will clip the other, so make sure we determine which is larger
+if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+
+var displayElement = parent.getElementsByClassName("rangeValues1")[0];
+  displayElement.innerHTML = slide1 + " C -> " + slide2 + "C";
+
+
+}
+
 
 window.onload = function(){
   // Initialize Sliders
@@ -352,9 +444,24 @@ window.onload = function(){
           }
         }
       }
+
+      var sliderSections = document.getElementsByClassName("range-slider1");
+      for( var x = 0; x < sliderSections.length; x++ ){
+        var sliders = sliderSections[x].getElementsByTagName("input");
+        for( var y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getVals1;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }
+
+
 }
 </script>
 
-
+<script src="../js/interval.js"></script>
 </body>
+
 </html>

@@ -70,10 +70,20 @@ li a.active {
 
 
 
+#myInput{
+  width:148%;
+}
 
+#myInput2{
+  width:91%;
+}
 
+#myInput1{
+  width:91%;
+}
 
 .container{
+  display:flex;
   align-items: center;
   padding-top:30px;
 }
@@ -243,9 +253,10 @@ background-color:#f2f2f2;
 }
 .navbar{
   list-style-type: none;
+  
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  
   background-color: #282828;
   top: 0;
   position:sticky;
@@ -286,11 +297,13 @@ background-color:#f2f2f2;
 
 .navbar .pages .dropdown-content {
   display: none;
-  position: relative;
-  background-color: #f9f9f9;
+  position: absolute;
+  background-color: #282828;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
+  padding: 3px 3px;
+  right: 0%;
+  top:46px;
   z-index: 1;
 }
 
