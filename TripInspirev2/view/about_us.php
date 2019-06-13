@@ -56,7 +56,7 @@ window.onclick = function(event) {
           echo '<div class="dropdown">
           <a href="#" onclick="myFunction()" class="dropbtn">User</a>
           <div id="myDropdown" class="dropdown-content">
-            <a href="#home">Profile</a>
+            <a href="Profile.php">Profile</a>
             <a href="login.php">Log out</a>
             
           </div>
