@@ -1,0 +1,158 @@
+/*body {
+  /*background:url(../3.jpg);*//*imaginea folosita la background*/
+ /* background-size: auto;/*am setat fundalul pe tot ecranul*/
+ /* font-family: 'Titillium Web', sans-serif;/*fonturile folosite*/
+ /*}*/
+
+
+body{
+	background: #e6e6e6;
+}
+
+/* The container */
+.container {
+  padding-top:0;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  /*border: 1px solid black;*/
+ }
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border: 1.3px solid black;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+.form {
+  margin-top:40px;
+  padding: 20px;/*dimensiunea de la box exterior la inside things*/
+  max-width: 300px;/*dimensiunea in latime a boxului exterior*/
+  margin-left: 30px;/*distanta 40px e fata de sus/jos auto->dreapta/stanga*/
+  /*box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);/*umbra boxului exterior*/
+  /*background: #bfbfbf; /*opacity grey color background*/
+  margin-bottom:40px;
+  background-color: white;
+  border-radius: 5px;
+  }
+  
+  
+  .form1 {
+    margin-top:40px;
+    padding: 20px;/*dimensiunea de la box exterior la inside things*/
+    max-width: 300px;/*dimensiunea in latime a boxului exterior*/
+    margin-left: 30px;/*distanta 40px e fata de sus/jos auto->dreapta/stanga*/
+    /*box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);/*umbra boxului exterior*/
+    /*background: #bfbfbf; /*opacity grey color background*/
+    margin-bottom:40px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: overlay;
+    height:350px;
+    }
+
+
+
+  .button {
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:40px;
+  width:125px;
+  border: 0;/*nu am contur la butonul GET STARTED de asta e 0*/
+  padding: 15px 15px;/*distanta de la GET STARTED sus si jos*/
+  font-size: 1rem;/*mareste cam de 2 ore fontul folosit*/
+  font-weight: 400;/*grosimea fontului folosit la GET STARTED*/
+  text-transform: uppercase;/*e scris cu capslock GET STARTED*/
+  letter-spacing: .0.7em;/*inca o data pe cat era distanta dintre litere (asta face "em")*/
+  background: #1ab188;/*culoarea folosita la backgroundul butonului GET STARTED*/
+  color: #ffffff;/*culoarea alb folosita la GET STARTED*/
+  }
+  
+  .button:hover {
+  background: #179b77;/*culoarea de hover de peste GET STARTED*/
+}/*face un hover peste getstarted*/
+
+
+
+
+
+
+.tab-group  {
+ 
+  margin-bottom:30px;
+  text-decoration: none;/*nu am textul subliniat linkable*/
+  padding: 0px;/*de la text register/login pana sus/jos*/
+  background: grey;/*pune negru acolo unde nu e selectat butonul*/
+  color: #fff;/*pune alb la scris registe/login la butoane*/
+  font-size: 12px;/*dimensiunea textului register/login-alb*/
+  float: left;/*the position of the active botton*/
+  width: 100%;/*50% e procentul din total insideului care pe care il ia fiecare buton*/
+  text-align: center;/*textul register/login din butoane*/
+  cursor: pointer;/*ce fel de mouse o sa fie peste butoane registe/login*/
+}
+
+@media (min-width: 576px) {
+    .form {
+      max-width: 144px; } }
+  @media (min-width: 768px) {
+    .form {
+      max-width: 192px; } }
+  @media (min-width: 992px) {
+    .form {
+      max-width: 248px; } }
+  @media (min-width: 1200px) {
+    .form {
+      max-width: 300px; } }
