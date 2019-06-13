@@ -345,4 +345,15 @@ $this->AllCities = array();
 }
 
 
+
+function getAirport($oras){
+  foreach ($this->OnAir as $c => $t) {
+    for ($h=0; $h < count($t); $h++) {
+      if($oras == $t[$h][0]){
+        return $t[$h][1];
+      }
+  }
+}
+}
+
 }

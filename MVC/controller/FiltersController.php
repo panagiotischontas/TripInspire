@@ -31,11 +31,21 @@ class FiltersController{
     $this->model->filterWeather[1] = 60;
     $this->model->filterCities = array();
     //GET THE DEPARTURE CITY
-    $this->model->filterDepartureCity = "IAS"; //default
+    $this->model->filterDepartureCity  = "IAS"; //default
 
 
     //GET THE DEPARTURE DATE
+
     $this->model->filterDate = date("d/m/Y", strtotime("+1 day"));
+
+
+if(isset($_GET['myCity'])){
+$this->model->filterDepartureCity = $this->model->getAirport($_GET['myCity']);
+// echo "aiciiii " . $this->model->filterDepartureCity;
+}
+
+if(isset($_GET['FilterDate']))
+$this->model->filterDate = date($_GET['FilterDate']);
 
 if(isset($_GET['minPrice'])){
     $this->model->filterPrice[0] = $_GET['minPrice'];
